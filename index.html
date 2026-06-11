@@ -217,7 +217,7 @@
         }
 
         @media (max-width: 768px) {
-            body { padding-top: 180px; }
+            body { padding-top: 140px; } /* Ajuste l'espace sous le menu si besoin */
             header { 
                 flex-direction: column; 
                 height: auto; 
@@ -228,6 +228,7 @@
             }
             header.scrolled { height: auto; }
             header.scrolled .logo-container img { height: 45px; }
+            .logo-container img { height: 60px; } /* <--- AJOUTE CETTE LIGNE ICI */
             nav ul { gap: 15px; }
             .portfolio-grid { grid-template-columns: 1fr; gap: 35px; }
         }
