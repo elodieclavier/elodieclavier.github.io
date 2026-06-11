@@ -188,13 +188,29 @@
         }
 
         @media (max-width: 768px) {
-            body { padding-top: 180px; }
-            header { flex-direction: column; height: auto; padding: 20px; gap: 15px; position: relative; }
+            body { padding-top: 190px; } /* Donne de l'espace sous le menu pour ne rien couper */
+            header { 
+                flex-direction: column; 
+                height: auto; 
+                padding: 15px 10px; 
+                gap: 10px; 
+                position: fixed; /* Reste bien fixé en haut */
+                align-items: center; 
+            }
             header.scrolled { height: auto; }
             header.scrolled .logo-container img { height: 45px; }
-            nav { flex-direction: column; gap: 15px; }
-            nav ul { gap: 15px; }
-            .about-photo-col { height: 280px; }
+            .logo-container img { height: 55px; } /* Ton logo à taille idéale sur mobile */
+            
+            /* LA LIGNE MAGIQUE POUR VOS RUBRIQUES : */
+            nav ul { 
+                flex-direction: column; /* Aligne les rubriques proprement de haut en bas */
+                gap: 8px; 
+                text-align: center;
+                padding: 0;
+            }
+            
+            .portfolio-grid { grid-template-columns: 1fr; gap: 35px; }
+            .about-photo-col { height: 280px; } /* <--- ON GARDE CETTE LIGNE ESSENTIELLE POUR TA PHOTO ! */
         }
     </style>
 </head>
