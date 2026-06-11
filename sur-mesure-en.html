@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bespoke – Elodie CLAVIER Illustration</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            background-color: #ffffff; 
+            color: #1a1a1a; 
+            line-height: 1.8; 
+            padding-top: 225px; 
+            padding-bottom: 50px;
+        }
+        
+        header { 
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 225px;
+            background-color: #ffffff;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between; 
+            align-items: center;
+            padding: 0 10%; 
+            border-bottom: 1px solid #f2f2f2;
+        }
+
+        header.scrolled {
+            height: 120px;
+        }
+
+        .logo-container img {
+            height: 70px;
+            width: auto;
+            display: block;
+            transition: all 0.3s ease;
+        }
+        header.scrolled .logo-container img {
+            height: 40px;
+        }
+
+        nav { display: flex; align-items: center; gap: 35px; }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+            padding: 10px 0;
+            margin: 0;
+            align-items: center;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #666;
+            font-size: 11px; 
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            color: #1a1a1a;
+        }
+
+        .lang-switch { display: flex; align-items: center; gap: 10px; }
+        .lang-switch a { text-decoration: none; color: #aaaaaa; font-size: 11px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; transition: color 0.3s ease; }
+        .lang-switch a:hover { color: #1a1a1a; }
+        .lang-switch a.active-lang { color: #1a1a1a; font-weight: 600; pointer-events: none; }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .vc-row.grey-bg {
+            background-color: #f9f9f9;
+            padding: 80px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            margin-bottom: 60px;
+        }
+
+        .vc-text {
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        .vc-text h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 34px;
+            font-weight: 400;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        .vc-text p {
+            font-size: 15px;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 35px;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 13px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #444;
+        }
+
+        .vc-title-separator {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            text-align: right;
+        }
+
+        .vc-title-separator h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 22px;
+            font-weight: 400;
+            font-style: italic;
+            color: #1a1a1a;
+        }
+
+        .vc-title-separator h5 {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #aaa;
+        }
+
+        .slider-section {
+            margin: 80px 0;
+            text-align: center;
+        }
+
+        .slider-section h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 26px;
+            font-weight: 400;
+            margin-bottom: 40px;
+            letter-spacing: 1px;
+        }
+
+        .carousel-wrapper {
+            position: relative;
+            max-width: 100%;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+        }
+
+        .marquee-container {
+            overflow: hidden;
+            width: 100%;
+            padding: 10px 0;
+            scroll-behavior: smooth;
+        }
+
+        .marquee-track {
+            display: flex;
+            gap: 30px; 
+            width: max-content;
+            padding: 0 10px;
+        }
+
+        .marquee-item {
+            flex-shrink: 0;
+        }
+
+        .marquee-item img {
+            height: 400px; 
+            width: auto;
+            object-fit: contain;
+            display: block;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+            background-color: #fafafa;
+        }
+
+        .arrow-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.95);
+            border: 1px solid #e5e5e5;
+            color: #1a1a1a;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .arrow-btn:hover {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            border-color: #1a1a1a;
+        }
+
+        .arrow-left {
+            left: -20px;
+        }
+
+        .arrow-right {
+            right: -20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            font-size: 12px;
+            color: #ccc;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 768px) {
+            header { flex-direction: column; height: auto; padding: 20px; position: relative; gap: 15px; }
+            body { padding-top: 180px; }
+            header.scrolled { height: auto; }
+            .logo-container img { height: 45px; }
+            nav { flex-direction: column; gap: 15px; }
+            nav ul { flex-direction: column; gap: 15px; text-align: center; }
+            .vc-row.grey-bg { flex-direction: column; padding: 40px 20px; }
+            .vc-text { padding-right: 0; text-align: center; }
+            .vc-title-separator { position: static; text-align: center; margin-top: 20px; }
+            .arrow-left { left: 5px; }
+            .arrow-right { right: 5px; }
+            .marquee-item img { height: 280px; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header id="myHeader" class="">
+        <div class="logo-container">
+            <a href="index-en.html">
+                <img src="https://www.elodieclavier.com/wp-content/uploads/2023/01/Elodie_Clavier_illustratrice_logo2_70x240_retina.png" alt="Elodie CLAVIER Illustration">
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index-en.html">Home</a></li>
+                <li><a href="about-en.html">About</a></li>
+                <li><a href="sur-mesure-en.html" class="active">Bespoke</a></li>
+                <li><a href="boutique-shop-en.html">Boutique / Shop</a></li>
+                <li><a href="contact-en.html">Contact</a></li>
+            </ul>
+            <div class="lang-switch">
+                <a href="sur-mesure.html">FR</a>
+                <span style="color: #eeeeee; padding: 0 5px;">|</span>
+                <a href="sur-mesure-en.html" class="active-lang">EN</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="about-container">
+            
+            <div class="vc-row grey-bg">
+                
+                <div class="vc-text">
+                    <h2>I create unique illustrations <br>for your precious moments.</h2>
+                    <p>Wedding invitations, anniversaries, announcements, or custom cards: <br>I bring your bespoke projects to life.</p>
+                    <p>Share your story with me, and let’s realize your ideas!</p>
+                    <p>These illustrations are created on a graphics tablet.</p>
+                    <a href="contact-en.html" class="cta-button">Discuss your project</a>
+                </div>
+                
+                <div class="vc-title-separator">
+                    <h3>Bespoke</h3>
+                    <h5>Creations</h5>
+                </div>
+
+            </div>
+            
+            <section class="slider-section">
+                <h4>A few creations...</h4>
+                
+                <div class="carousel-wrapper">
+                    <button class="arrow-btn arrow-left" onclick="scrollCarousel(-1)" aria-label="Previous">❮</button>
+                    
+                    <div class="marquee-container" id="carouselContainer">
+                        <div class="marquee-track">
+                            
+                            <div class="marquee-item">
+                                <img src="Faire-part William et Charlotte-2-Fond blanc 1.jpg" alt="Illustration 1">
+                            </div>
+                            <div class="marquee-item">
+                                <img src="CHARLOTTE ET WILLIMAM 2.jpg" alt="Illustration 2">
+                            </div>
+                            <div class="marquee-item">
+                                <img src="faire_part_3.jpeg" alt="Illustration 3">
+                            </div>
+                            <div class="marquee-item">
+                                <img src="FAIRE-PART GEORGIA ET MATTHEW 4.jpg" alt="Illustration 4">
+                            </div>
+                            <div class="marquee-item">
+                                <img src="Illustration_chateausainteroseline 5.jpg" alt="Illustration 5">
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                    <button class="arrow-btn arrow-right" onclick="scrollCarousel(1)" aria-label="Next">❯</button>
+                </div>
+            </section>
+            
+        </div>
+    </main>
+
+    <footer>
+        <p>Copyright © Elodie Clavier. All rights reserved.</p>
+        <p style="margin-top: 15px; font-size: 0.65rem; letter-spacing: 1px;">
+            <a href="mentions-legales-en.html" style="color: #aaaaaa; text-decoration: none; margin-right: 15px; transition: color 0.3s;" onmouseover="this.style.color='#1a1a1a'" onmouseout="this.style.color='#aaaaaa'">Legal Notice</a>
+            <span style="color: #eeeeee;">|</span>
+            <a href="cgv-en.html" style="color: #aaaaaa; text-decoration: none; margin-left: 15px; transition: color 0.3s;" onmouseover="this.style.color='#1a1a1a'" onmouseout="this.style.color='#aaaaaa'">Terms & Conditions (T&C)</a>
+        </p>
+    </footer>
+
+    <script>
+        window.onscroll = function() {
+            var header = document.getElementById("myHeader");
+            if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+                header.classList.add("scrolled");
+            } else {
+                header.classList.remove("scrolled");
+            }
+        };
+
+        function scrollCarousel(direction) {
+            const container = document.getElementById('carouselContainer');
+            const scrollAmount = 380; 
+            
+            container.scrollBy({
+                left: direction * scrollAmount,
+                behavior: 'smooth'
+            });
+        }
+    </script>
+
+</body>
+</html>

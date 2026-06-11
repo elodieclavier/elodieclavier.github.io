@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact – Elodie CLAVIER Illustration</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            background-color: #ffffff; 
+            color: #1a1a1a; 
+            line-height: 1.8; 
+            padding-top: 225px; 
+            padding-bottom: 50px;
+        }
+        
+        header { 
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 225px;
+            background-color: #ffffff;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10%;
+            border-bottom: 1px solid #f2f2f2;
+        }
+
+        header.scrolled {
+            height: 120px;
+        }
+
+        .logo-container img {
+            height: 70px;
+            width: auto;
+            display: block;
+            transition: all 0.3s ease;
+        }
+        
+        header.scrolled .logo-container img {
+            height: 40px;
+        }
+
+        nav { display: flex; align-items: center; gap: 35px; }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+            padding: 10px 0;
+            margin: 0;
+            align-items: center;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #666;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            color: #1a1a1a;
+        }
+
+        .lang-switch { display: flex; align-items: center; gap: 10px; }
+        .lang-switch a { text-decoration: none; color: #aaaaaa; font-size: 11px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; transition: color 0.3s ease; }
+        .lang-switch a:hover { color: #1a1a1a; }
+        .lang-switch a.active-lang { color: #1a1a1a; font-weight: 600; pointer-events: none; }
+
+        .contact-section-container {
+            max-width: 1100px;
+            margin: 60px auto;
+            padding: 0 40px;
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .contact-text-side {
+            color: #000000;
+        }
+
+        .contact-text-side h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 26px;
+            font-weight: 400;
+            margin-bottom: 25px;
+            color: #000000;
+        }
+
+        .contact-text-side p {
+            font-size: 14px;
+            color: #000000;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .contact-text-side .email-line {
+            font-weight: 600;
+            text-decoration: underline;
+            margin-top: 25px;
+            margin-bottom: 5px;
+            font-size: 14px;
+            color: #000000;
+        }
+
+        .contact-text-side .phone-line {
+            font-size: 14px;
+            color: #000000;
+            margin-bottom: 35px;
+        }
+
+        .agent-block {
+            margin-top: 35px;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #000000;
+        }
+
+        .agent-block .agent-title {
+            font-weight: 500;
+            margin-bottom: 2px;
+        }
+
+        .agent-block .agent-name {
+            margin-bottom: 2px;
+        }
+
+        .agent-block .agent-email {
+            text-decoration: underline;
+        }
+
+        .contact-form-side {
+            width: 100%;
+        }
+
+        form {
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: #1a1a1a;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #e5e5e5;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            color: #1a1a1a;
+            background-color: #fafafa;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #1a1a1a;
+            background-color: #ffffff;
+        }
+
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            border: none;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #444;
+        }
+
+        /* MODIFIÉ : Bloc icônes seules, centrées et épurées */
+        .social-block {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: 35px;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            padding: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .social-link img {
+            width: 26px;
+            height: 26px;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .social-link:hover img {
+            transform: scale(1.12);
+        }
+
+        .social-separator {
+            color: #e5e5e5;
+            font-size: 16px;
+            user-select: none;
+        }
+
+        footer {
+            text-align: center;
+            padding: 60px 0 40px 0;
+            font-size: 12px;
+            color: #ccc;
+            letter-spacing: 1px;
+            margin-top: 60px;
+        }
+
+        @media (max-width: 850px) {
+            .contact-section-container {
+                grid-template-columns: 1fr;
+                gap: 50px;
+                padding: 0 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header { flex-direction: column; height: auto; padding: 20px; position: relative; gap: 15px; }
+            body { padding-top: 0; }
+            header.scrolled { height: auto; }
+            .logo-container img { height: 45px; }
+            nav { flex-direction: column; gap: 15px; }
+            nav ul { flex-direction: column; gap: 15px; text-align: center; }
+            .contact-section-container { margin: 40px auto; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header id="myHeader">
+        <div class="logo-container">
+            <a href="index-en.html">
+                <img src="https://www.elodieclavier.com/wp-content/uploads/2023/01/Elodie_Clavier_illustratrice_logo2_70x240_retina.png" alt="Elodie CLAVIER Illustration">
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index-en.html">Home</a></li>
+                <li><a href="about-en.html">About</a></li>
+                <li><a href="sur-mesure-en.html">Bespoke</a></li>
+                <li><a href="boutique-shop-en.html">Boutique / Shop</a></li>
+                <li><a href="contact-en.html" class="active">Contact</a></li>
+            </ul>
+            <div class="lang-switch">
+                <a href="contact.html">FR</a>
+                <span style="color: #eeeeee; padding: 0 5px;">|</span>
+                <a href="contact-en.html" class="active-lang">EN</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="contact-section-container">
+            
+            <div class="contact-text-side">
+                <h2>GET IN TOUCH !</h2>
+                <p>Have an idea, a bespoke project, or a collaboration inquiry?</p>
+                <p>Feel free to leave me a message here<br>or reach out directly via email at:</p>
+                
+                <p class="email-line">contact@elodieclavier.com</p>
+                <p class="phone-line">+33 (0)7 81 84 68 56</p>
+                
+                <p>I would be delighted to learn more about your project<br>and will get back to you as soon as possible!</p>
+            
+                <div class="agent-block">
+                    <p class="agent-title">Represented by Agence La Suite :</p>
+                    <p class="agent-name">Morgane Le François</p>
+                    <p class="agent-email">contact@lasuite-illustration.com</p>
+                </div>
+            </div>
+
+            <div class="contact-form-side">
+                <form action="#" method="POST">
+                    <div class="form-group">
+                        <label for="name">Name / Company *</label>
+                        <input type="text" id="name" name="name" required placeholder="Your name or company">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required placeholder="your@email.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" placeholder="Subject of your message">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" required placeholder="Describe your project in a few lines..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">SEND MESSAGE</button>
+                    
+                    <!-- MODIFIÉ : Pictogrammes Instagram et Pinterest seuls et épurés -->
+                    <div class="social-block">
+                        <a href="https://www.instagram.com/elodieclavier_illustrations/" target="_blank" class="social-link" title="Instagram">
+                            <img src="Instagram.png" alt="Elodie Clavier Instagram Logo">
+                        </a>
+                        <span class="social-separator">|</span>
+                        <a href="https://fr.pinterest.com/elodieclavier_illustration/" target="_blank" class="social-link" title="Pinterest">
+                            <img src="466953.png" alt="Elodie Clavier Pinterest Logo">
+                        </a>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>Copyright © Elodie Clavier. All rights reserved.</p>
+        <p style="margin-top: 15px; font-size: 0.65rem; letter-spacing: 1px;">
+            <a href="mentions-legales-en.html" style="color: #aaaaaa; text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='#1a1a1a'" onmouseout="this.style.color='#aaaaaa'">Legal Notice</a>
+        </p>
+    </footer>
+
+    <script>
+        window.onscroll = function() {
+            var header = document.getElementById("myHeader");
+            if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+                header.classList.add("scrolled");
+            } else {
+                header.classList.remove("scrolled");
+            }
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elodie CLAVIER Illustration – Portfolio</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="icon" type="image/png" href="Favicon3.png">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            background-color: #ffffff; 
+            color: #1a1a1a; 
+            line-height: 1.6; 
+            padding-top: 225px; 
+            padding-bottom: 50px;
+        }
+        
+        header { 
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 225px;
+            background-color: #ffffff;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10%;
+            border-bottom: 1px solid #f5f5f5;
+            transition: all 0.4s ease;
+        }
+
+        .logo-container img {
+            height: 70px;
+            width: auto;
+            display: block;
+            transition: all 0.4s ease;
+        }
+        
+        nav { position: relative; }
+        nav ul { list-style: none; display: flex; gap: 35px; padding: 0; }
+        nav li { position: relative; padding: 10px 0; }
+        nav a { 
+            text-decoration: none; 
+            color: #1a1a1a; 
+            font-size: 0.8rem; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            font-weight: 500; 
+        }
+        nav a:hover, nav .active-link { color: #999999; }
+        
+        .dropdown-menu { 
+            display: none; 
+            position: absolute; 
+            top: 100%; 
+            left: 50%; 
+            transform: translateX(-50%); 
+            background-color: #ffffff; 
+            border: 1px solid #eeeeee; 
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.05); 
+            min-width: 180px; 
+            padding: 10px 0; 
+            list-style: none; 
+            flex-direction: column; 
+        }
+        .dropdown-menu li { padding: 0; text-align: center; }
+        .dropdown-menu a { display: block; padding: 10px 15px; font-size: 0.75rem; color: #555555; letter-spacing: 1px; white-space: nowrap; }
+        .dropdown-menu a:hover { background-color: #f9f9f9; color: #1a1a1a; }
+        nav li:hover .dropdown-menu { display: flex; }
+
+        header.scrolled {
+            height: 90px;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.03);
+        }
+        header.scrolled .logo-container img { height: 40px; }
+
+        .filter-container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+        .filter-container ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+        .filter-container a {
+            text-decoration: none;
+            color: #888888;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        .filter-container a.active, .filter-container a:hover {
+            color: #1a1a1a;
+            border-bottom: 1px solid #1a1a1a;
+        }
+
+        .portfolio-grid {
+            max-width: 1250px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 45px;
+            padding: 0 20px;
+        }
+
+        .portfolio-item {
+            background-color: #ffffff;
+            display: block;
+            width: 100%;
+        }
+        
+        .image-box {
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            background-color: #fcfcfc;
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .portfolio-info {
+            padding: 18px 0;
+            text-align: left;
+        }
+
+        .portfolio-info h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.35rem;
+            font-weight: 400;
+            color: #111111;
+            margin-bottom: 4px;
+            line-height: 1.3;
+        }
+
+        .portfolio-info .category {
+            font-size: 0.7rem;
+            color: #aaaaaa;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .invisible-click-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            z-index: 10;
+            cursor: pointer;
+            display: block;
+        }
+
+        footer { 
+            max-width: 1200px; 
+            margin: 80px auto 0 auto; 
+            text-align: center; 
+            border-top: 1px solid #eeeeee; 
+            padding-top: 40px; 
+            font-size: 0.75rem; 
+            letter-spacing: 1px; 
+            text-transform: uppercase; 
+            color: #aaaaaa; 
+        }
+
+        /* Language Switcher */
+        .lang-switch {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-left: 35px;
+            border-left: 1px solid #eeeeee;
+            padding-left: 20px;
+        }
+        .lang-switch a {
+            text-decoration: none;
+            color: #aaaaaa;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+        .lang-switch a.active-lang, .lang-switch a:hover {
+            color: #1a1a1a;
+        }
+
+        @media (max-width: 768px) {
+            body { padding-top: 180px; }
+            header { 
+                flex-direction: column; 
+                height: auto; 
+                padding: 20px; 
+                gap: 15px; 
+                position: relative; 
+                align-items: center; 
+            }
+            header.scrolled { height: auto; }
+            header.scrolled .logo-container img { height: 45px; }
+            nav ul { gap: 15px; }
+            .portfolio-grid { grid-template-columns: 1fr; gap: 35px; }
+        }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff; 
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: zoom-out;
+            padding: 20px;
+            overflow-y: auto; 
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 72vh;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05); 
+            object-fit: contain;
+            margin-bottom: 20px; 
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            font-size: 2.5rem;
+            color: #1a1a1a;
+            cursor: pointer;
+            font-family: Arial, sans-serif;
+            z-index: 10010;
+        }
+
+        .lightbox-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2.5rem;
+            color: #1a1a1a;
+            padding: 20px;
+            cursor: pointer;
+            user-select: none;
+            transition: opacity 0.3s;
+            z-index: 10005;
+        }
+        #lightboxPrev { left: 30px; }
+        #lightboxNext { right: 30px; }
+        .lightbox-nav-btn:hover { opacity: 0.5; }
+
+        .lightbox-caption {
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #ffffff; 
+            padding: 15px 20px;
+            border-radius: 4px;
+        }
+        @media (max-width: 768px) {
+            .lightbox-caption { font-size: 11px; padding: 10px; }
+            .lightbox img { max-height: 65vh; }
+            .lightbox-close { top: 20px; right: 20px; }
+        }
+    </style>
+<meta name="p:domain_verify" content="9b768cf4bb5eedd71c55c50a6190ba48"/>
+</head>
+<body>
+
+    <header id="myHeader">
+        <div class="logo-container">
+            <a href="index.html">
+                <img src="https://www.elodieclavier.com/wp-content/uploads/2023/01/Elodie_Clavier_illustratrice_logo2_70x240_retina.png" alt="Elodie CLAVIER Illustration">
+            </a>
+        </div>
+        
+        <div style="display: flex; align-items: center;">
+            <nav>
+                <ul>
+                    <li>
+                        <a href="index.html" class="active-link">Portfolio ▾</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="index.html" onclick="localStorage.setItem('filter', 'communication');">Communication</a></li>
+                            <li><a href="index.html" onclick="localStorage.setItem('filter', 'live-drawing');">Live drawing</a></li>
+                            <li><a href="index.html" onclick="localStorage.setItem('filter', 'editorial');">Editorial</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="about-en.html">ABOUT</a></li>
+                    <li><a href="sur-mesure-en.html">BESPOKE</a></li>
+                    <li><a href="boutique-shop-en.html">BOUTIQUE/SHOP</a></li>
+                    <li><a href="contact-en.html">Contact</a></li>
+                </ul>
+            </nav>
+
+            <!-- Language Buttons -->
+            <div class="lang-switch">
+                <a href="index.html">FR</a>
+                <span style="color: #eeeeee; font-size: 0.75rem;">|</span>
+                <a href="#" class="active-lang">EN</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="filter-container">
+            <ul>
+                <li><a id="all-btn" class="active" onclick="filterCategory('all')">All</a></li>
+                <li><a id="live-btn" onclick="filterCategory('live-drawing')">Live drawing</a></li>
+                <li><a id="communication-btn" onclick="filterCategory('communication')">Communication</a></li>
+                <li><a id="editorial-btn" onclick="filterCategory('editorial')">Editorial</a></li>
+            </ul>
+        </div>
+
+        <div class="portfolio-grid" id="portfolioGrid">
+
+            <div class="portfolio-item editorial">
+                <div class="image-box">
+                    <img src="Illustration-Coco-Mademoiselle-Chanel-Elodie Clavier.jpg" alt="Chanel Illustrated - Lannoopublishers">
+                    <a href="javascript:void(0)" 
+                       onclick="event.preventDefault(); openGallery(['Book-Chanel-Illustrated-Elodie-Clavier.jpg', 'Illustration-Beauty-Chanel-Nailcolour-Elodie-Clavier.jpg', 'Illustration-mode-Chanel-Elodie-Clavier.jpg'], `Honored to be among the 24 international fashion illustrators selected to be featured in the official book Chanel Illustrated. I contributed a reinterpretation of its legendary pieces. It is a true collector's item intended for brand enthusiasts and collectors, but also for industry professionals, fashionistas, illustrators, and art lovers.`);" 
+                       class="invisible-click-overlay"
+                       title="Click to view project"></a>
+                </div>
+                <div class="portfolio-info">
+                    <h3>Chanel Illustrated - Lannoopublishers</h3>
+                    <span class="category">Editorial</span>
+                </div>
+            </div>
+
+            <div class="portfolio-item communication">
+                <div class="image-box">
+                    <img src="Illustration-la-serena-lifestyle-minimaliste-elodie-clavier-1.jpg" alt="La Serena - Private Beach">
+                    <a href="javascript:void(0)" 
+                       onclick="openGallery(['Illustration-la-serena-lifestyle-minimaliste-elodie-clavier-2.jpg'], `Minimalist lifestyle illustration created for La Serena private beach in Ramatuelle (Hôtel de Paris Saint-Tropez).`);" 
+                       class="invisible-click-overlay" 
+                       title="Click to view project"></a>
+                </div>
+                <div class="portfolio-info">
+                    <h3>La Serena - Private Beach</h3>
+                    <span class="category">Communication</span>
+                </div>
+            </div>
+
+            <div class="portfolio-item live-drawing">
+                <div class="image-box">
+                    <img src="Illustration-live-drawing-le-peninsula-gala-d-hiver-Luxe-elodie-clavier.jpg" alt="Le Peninsula – Gala d’hiver">
+                    <a href="javascript:void(0)" 
+                       onclick="openGallery([
+                           'Illustration-live-drawing-le-peninsula-gala-d-hiver-elodie-clavier.jpg',
+                           'Illustration-live-drawing-le-peninsula-gala-d-hiver-Paris-elodie-clavier.jpg'
+                       ], `Live drawing for the Winter Gala at the Peninsula.`);" 
+                       class="invisible-click-overlay" 
+                       title="Click to view the project"></a>
+                </div>
+                <div class="portfolio-info">
+                    <h3>Le Peninsula – Gala d’hiver</h3>
+                    <span class="category">Live drawing</span>
+                </div>
+            </div>
+
+            <div class="portfolio-item communication">
+                <div class="image-box">
+                    <img src="Illustration-maison-parfum-luxe-projet-packaging-elodie-clavier.jpg" alt="Packaging – Fragrance House">
+                    <a href="javascript:void(0)" 
+                       onclick="openGallery(['Illustration-maison-parfum-luxe-packaging-elodie-clavier.jpg'], `Packaging illustration proposal for a famous luxury Fragrance House.`);" 
+                       class="invisible-click-overlay" 
+                       title="Click to view project"></a>
+                </div>
+                <div class="portfolio-info">
+                    <h3>Packaging – Fragrance House</h3>
+                    <span class="category">Communication</span>
+                </div>
+            </div>
+            
+            <div class="portfolio-item communication">
+                <div class="image-box">
+                    <img src="Illustration-Hotel-de-Paris-st-tropez-la-vie-en-rose-elodie-clavier.jpg" alt="Hôtel de Paris - La vie en rose">
+                    <a href="javascript:void(0)" 
+                       onclick="openGallery(['Illustration-Hotel-de-Paris-silhouettes-clarins-elodie-clavier.jpg', 'Illustration-Hotel-de-Paris-silhouettes-2-elodie-clavier.jpg', 'Illustration-Hotel-de-Paris-silhouettes-elodie-clavier.jpg'], `Series of illustrations created for the Hôtel de Paris.`);" 
+                       class="invisible-click-overlay" 
+                       title="Click to view project"></a>
+                </div>
+                <div class="portfolio-info">
+                    <h3>Hôtel de Paris - La vie en rose</h3>
+                    <span class="category">Communication</span>
+                </div>
+            </div>
+
+            <div class="portfolio-item communication">
+                <div class="image-box">
+                    <img src="Illustration-HoteldeParis-SaintTropez-Elodie Clavier-carte-roomservice.jpg" alt="Hôtel de Paris – Room Service">
+                    <a href="javascript:void(0)" 
+                       onclick="openGallery(['Illustration-HoteldeParis-SaintTropez-Elodie Clavier-carte-roomservice.jpg'], `Creation of a series of refined illustrations for the Room Service menus of the Hôtel de Paris Saint-Tropez.`);" 
+                       class="invisible-click-overlay" 
+                       title="Click to view project"></a>
+                </div>
+                <div class="portfolio-info">
+                    <h3>Hôtel de Paris – Room Service</h3>
+                    <span class="category">Communication</span>
+                </div>
+            </div>
+
+            <div class="portfolio-item communication">
+                <div class="image-box">
+                    <img src="Illustration_chateausainteroseline 5.jpg" alt="Château Sainte Roseline">
+                    <a href="javascript:void(0)" 
+                       onclick="openGallery(['https://www.elodieclavier.com/wp-content/uploads/2023/01/CoverH_Chateau_SainteRoseline-scaled-432x432.jpg'], `Illustration created for the communication and visual identity<br>of the prestigious wine estate Château Sainte Roseline.`);" 
+                       class="invisible-click-overlay" 
+                       title="Click to view project"></a>
+                </div>
+                <div class="portfolio-info">
+                    <h3>Château Sainte Roseline</h3>
+                    <span class="category">Communication</span>
+                </div>
+            </div>
+
+            <div class="portfolio-item communication">
+                <div class="image-box">
+                    <img src="illustration-abbaye-de-blanchelande-elodie-clavier.jpg" alt="Blanchelande Abbey – Communication">
+                    <a href="javascript:void(0)" 
+                       onclick="openGallery(['illustration-abbaye-de-blanchelande-mariage-elodie-clavier.jpg', 'illustration-abbaye-de-blanchelande-mariage-miellerie-elodie-clavier.jpg', 'illustration-abbaye-de-blanchelande-mariage-silhouette-elodie-clavier.jpg'], `Design and creation of a custom illustration series<br>for the Abbaye de Blanchelande's communication.`);" 
+                       class="invisible-click-overlay" 
+                       title="Click to view project"></a>
+                </div>
+                <div class="portfolio-info">
+                    <h3>Blanchelande Abbey</h3>
+                    <span class="category">Communication</span>
+                </div>
+            </div>
+
+            <div class="portfolio-item editorial">
+                <div class="image-box">
+                    <img src="Illustration-Madame-Figaro-presse-silhouettes-Lacoste-Elodie-Clavier.jpg" alt="Madame Figaro x Lacoste">
+                    <a href="javascript:void(0)" 
+                       onclick="openGallery(['Illustration-Madame-Figaro-encre-silhouettes-Lacoste-Elodie-Clavier.jpg'], `Creation of two illustrations for the Madame Figaro website,<br>in collaboration with Lacoste.`);" 
+                       class="invisible-click-overlay" 
+                       title="Click to view project"></a>
+                </div>
+                <div class="portfolio-info">
+                    <h3>Madame Figaro x Lacoste</h3>
+                    <span class="category">Editorial</span>
+                </div>
+            </div>
+
+            <div class="portfolio-item communication">
+                <div class="image-box">
+                    <img src="Illustration-Hotel-de-Paris-Saint-Tropez-Elodie-Clavier-Paysage.jpg" alt="Hôtel de Paris – Chocolate Box">
+                    <a href="javascript:void(0)" 
+                       onclick="openGallery(['Illustration-Hotel-de-Paris-Saint-Tropez-Elodie-Clavier-Paysage.jpg'], `Design and creation of an illustration<br>for the Hôtel de Paris Saint-Tropez's communication.`);" 
+                       class="invisible-click-overlay" 
+                       title="Click to view project"></a>
+                </div>
+                <div class="portfolio-info">
+                    <h3>Hôtel de Paris – Saint-Tropez</h3>
+                    <span class="category">Communication</span>
+                </div>
+            </div>
+
+            <div class="portfolio-item live-drawing">
+                <div class="image-box">
+                    <img src="Illustration-live-drawing-Chanel-Sous-le-signe-du-Lion.jpg" alt="Chanel – Under the Sign of the Lion">
+                    <a href="javascript:void(0)" 
+                       onclick="openGallery(['Slide1_Chanel_Sous_le_signe_du_Lion-live-drawing-Elodie-Clavier.jpg', 'Slide2_Chanel_Sous_le_signe_du_Lion-live-drawing-Elodie-Clavier.jpg', 'Slide3_Chanel_Sous_le_signe_du_Lion-live-drawing-Elodie-Clavier.jpg', 'Slide4_Chanel_Sous_le_signe_du_Lion-live-drawing-Elodie-Clavier.jpg'], `On the occasion of the release of the new High Jewelry collection<br>“Under the Sign of the Lion”, creation of four background illustrations themed<br>around Venice.<br><br><img src='Illustration-live-drawing-Chanel-Sous-le-signe-du-Lion-silhouette.jpg' alt='Chanel Silhouette' style='max-width:100%; max-height:250px; display:block; margin:15px auto 0 auto; border-radius:2px;'>`);" 
+                       class="invisible-click-overlay" 
+                       title="Click to view project"></a>
+                </div>
+                <div class="portfolio-info">
+                    <h3>Chanel – Sign of the Lion</h3>
+                    <span class="category">Live drawing</span>
+                </div>
+            </div>
+            
+            <div class="portfolio-item communication">
+                <div class="image-box">
+                    <img src="Illustration-camelia-encre-elodie-clavier.jpg" alt="CAMELLIA">
+                </div>
+                <div class="portfolio-info">
+                    <h3>Camélia</h3>
+                    <span class="category">Communication</span>
+                </div>
+            </div>
+
+            <div class="portfolio-item live-drawing">
+                <div class="image-box">
+                    <img src="Illustration-live-drawing-Galeries-Lafayette-Bulgari-silhouette-elodie-clavier.jpg" alt="Bulgari – Serpenti">
+                    <a href="javascript:void(0)" 
+                       onclick="openGallery([
+                           'Illustration-live-drawing-Galeries-Lafayette-Bulgari-Serpenti-elodie-clavier.jpg',
+                           'Illustration-live-drawing-Galeries-Lafayette-Bulgari-Serpenti-elodie-clavier-2.jpg'
+                       ], `Live drawing for the launch of the “Serpenti” collection at Galeries Lafayette.`);" 
+                       class="invisible-click-overlay" 
+                       title="Click to view the project"></a>
+                </div>
+                <div class="portfolio-info">
+                    <h3>Bulgari – Serpenti</h3>
+                    <span class="category">Live drawing</span>
+                </div>
+            </div>
+
+            <div class="portfolio-item communication">
+                <div class="image-box">
+                    <img src="Illustration-Silhouette-encre-Elodie-Clavier.jpg" alt="Street Style">
+                </div>
+                <div class="portfolio-info">
+                    <h3>Street Style</h3>
+                    <span class="category">Communication</span>
+                </div>
+            </div>
+
+            <div class="portfolio-item communication">
+                <div class="image-box">
+                    <img src="Illustration-Hotel-de-Paris-Saint-Tropez-Anniversaire-Elodie-Clavier.jpg" alt="Hôtel de Paris – 10th anniversary">
+                </div>
+                <div class="portfolio-info">
+                    <h3>Hôtel de Paris – 10 years</h3>
+                    <span class="category">Communication</span>
+                </div>
+            </div>
+
+<div class="portfolio-item communication">
+                <div class="image-box">
+                    <img src="Illustration-Surfeur-silhouette-Elodie-Clavier.jpg" alt="Surfer">
+                </div>
+                <div class="portfolio-info">
+                    <h3>Surfer</h3>
+                    <span class="category">Communication</span>
+                </div>
+            </div>
+
+            <div class="portfolio-item live-drawing">
+                <div class="image-box">
+                    <img src="Illustration-event-loreal-petit-palais-paris-silhouette-encre-elodie-clavier.jpg" alt="L’Oreal – Petit Palais">
+                    <a href="javascript:void(0)" 
+                       onclick="openGallery(['Illustration-live-drawing-loreal-petit-palais-paris-silhouette-encre-elodie-clavier-2.jpg'], `Live drawing on the occasion of a L'Oréal Group evening event at the Petit Palais.`);" 
+                       class="invisible-click-overlay" 
+                       title="Click to view project"></a>
+                </div>
+                <div class="portfolio-info">
+                    <h3>L’Oreal – Petit Palais</h3>
+                    <span class="category">Live drawing</span>
+                </div>
+            </div>
+
+<div class="portfolio-item live-drawing">
+                <div class="image-box">
+                    <img src="Illustration-le-petit-prince-montblanc-live-drawing-elodie-clavier-encre.jpg" alt="Montblanc – The Little Prince">
+                    <a href="javascript:void(0)" 
+                       onclick="openGallery(['Illustration-le-petit-prince-montblanc-live-drawing-elodie-clavier.jpg', 'Illustration-le-petit-prince-montblanc-live-drawing-elodie-clavier-2.jpg', 'Illustration-le-petit-prince-montblanc-live-drawing-elodie-clavier-3.jpg'], `On the occasion of the release of the new Meisterstück 'The Little Prince' collection, production of illustrations for the live drawing sessions.`);" 
+                       class="invisible-click-overlay" 
+                       title="Click to view project"></a>
+                </div>
+                <div class="portfolio-info">
+                    <h3>Montblanc – Little Prince</h3>
+                    <span class="category">Live drawing</span>
+                </div>
+            </div>
+
+            <div class="portfolio-item communication">
+                <div class="image-box">
+                    <img src="Illustration-Pattern-Design-capeline-encre-elodie-clavier.jpg" alt="Pattern design – Illustrations">
+                    <a href="javascript:void(0)" 
+                       onclick="openGallery(['Illustration-Pattern-Design-capeline-encre-elodie-clavier.jpg'], `Creation of pattern designs as part of the promotion for a new brand.`);" 
+                       class="invisible-click-overlay" 
+                       title="Click to view project"></a>
+                </div>
+                <div class="portfolio-info">
+                    <h3>Pattern design</h3>
+                    <span class="category">Communication</span>
+                </div>
+            </div>
+
+            <div class="portfolio-item live-drawing">
+                <div class="image-box">
+                    <img src="Illustration-live-drawing-Chanel-Aftershow-Vendome-Elodie-Clavier.jpg" alt="Chanel – Aftershow">
+                    <a href="javascript:void(0)" 
+                       onclick="openGallery(['Illustration-live-drawing-Chanel-Aftershow-Elodie-Clavier.jpg'], `Live drawing on the occasion of an Aftershow at the Vendôme boutique.`);" 
+                       class="invisible-click-overlay" 
+                       title="Click to view project"></a>
+                </div>
+                <div class="portfolio-info">
+                    <h3>Chanel – Aftershow</h3>
+                    <span class="category">Live drawing</span>
+                </div>
+            </div>
+
+            <div class="portfolio-item communication">
+                <div class="image-box">
+                    <img src="Glitter-eye-Elodie-Clavier.jpg" alt="GLITTER EYE">
+                </div>
+                <div class="portfolio-info">
+                    <h3>Glitter eye</h3>
+                    <span class="category">Communication</span>
+                </div>
+            </div>
+
+            <div class="portfolio-item live-drawing">
+                <div class="image-box">
+                    <img src="Illustration-live-drawing-Montblanc-the-jungle-book-encre-elodie-clavier.jpg" alt="Montblanc - The Jungle Book">
+                    <a href="javascript:void(0)" 
+                       onclick="openGallery(['Illustration-live-drawing-Montblanc-the-jungle-book-elodie-clavier.jpg', 'Illustration-live-drawing-Montblanc-the-jungle-book3-elodie-clavier.jpg', 'Illustration-live-drawing-Montblanc-the-jungle-book2-elodie-clavier.jpg'], `On the occasion of the release of the new 'Montblanc Writers Edition' collection,<br>which pays tribute to Rudyard Kipling and 'The Jungle Book',<br>production of illustrations for the live drawing sessions.`);" 
+                       class="invisible-click-overlay" 
+                       title="Click to view project"></a>
+                </div>
+                <div class="portfolio-info">
+                    <h3>Montblanc – The Jungle Book</h3>
+                    <span class="category">Live drawing</span>
+                </div>
+            </div>
+
+            <div class="portfolio-item communication">
+                <div class="image-box">
+                    <img src="Illustration-Chateau-Cremat-Invitation-Art-table-Elodie-Clavier.jpg" alt="CHATEAU CREMAT">
+                    <a href="javascript:void(0)" 
+                       onclick="openGallery(['Illustration-Chateau-Cremat-Elodie-Clavier.jpg', 'Illustration-Chateau-Cremat-invitation-Elodie-Clavier.jpg'], `Illustration of the reception hall for the Clefs d’Or luncheon.`);" 
+                       class="invisible-click-overlay" 
+                       title="Click to view project"></a>
+                </div>
+                <div class="portfolio-info">
+                    <h3>Château Cremat</h3>
+                    <span class="category">Communication</span>
+                </div>
+            </div>
+
+            <div class="portfolio-item communication">
+                <div class="image-box">
+                    <img src="Illustration-Fashion-Portrait-Elodie-Clavier.jpg" alt="FASHION PORTRAIT">
+                </div>
+                <div class="portfolio-info">
+                    <h3>Fashion portrait</h3>
+                    <span class="category">Communication</span>
+                </div>
+            </div>
+
+            <div class="portfolio-item communication">
+                <div class="image-box">
+                    <img src="Illustration-Fashion-Make-up-Elodie-Clavier.jpg" alt="HANDWRITING">
+                    <a href="javascript:void(0)" 
+                       onclick="openGallery(['Illustration-Handwriting-Elodie-Clavier.jpg'], `Bespoke typography and handwriting artwork tailored for luxury communication.`);" 
+                       class="invisible-click-overlay" 
+                       title="Click to view project"></a>
+                </div>
+                <div class="portfolio-info">
+                    <h3>Handwriting</h3>
+                    <span class="category">Communication</span>
+                </div>
+            </div>
+
+            <div class="portfolio-item communication">
+                <div class="image-box">
+                    <img src="Louboutin-Illustration-Elodie-Clavier.jpg" alt="LOUBOUTIN">
+                </div>
+                <div class="portfolio-info">
+                    <h3>Louboutin</h3>
+                    <span class="category">Communication</span>
+                </div>
+            </div>
+
+            <div class="portfolio-item editorial">
+                <div class="image-box">
+                    <img src="Illustration-Silhouette-encre-Vanity-Fair-Elodie-Clavier.jpg" alt="Vanity Fair">
+                    <a href="javascript:void(0)" 
+                       onclick="openGallery(['Illustration-Vanity-Fair-encre-silhouettes-elodie-clavier.jpg'], `Illustration for the article 'Where to go on a honeymoon?'<br>for the Vanity Fair website.`);" 
+                       class="invisible-click-overlay" 
+                       title="Click to view project"></a>
+                </div>
+                <div class="portfolio-info">
+                    <h3>Vanity Fair</h3>
+                    <span class="category">Editorial</span>
+                </div>
+            </div>
+
+            <div class="portfolio-item live-drawing">
+                <div class="image-box">
+                    <img src="Illustration-live-drawing-Pandora-Fete-des -meres-Elodie-Clavier.jpg" alt="Pandora – Mother's Day">
+                    <a href="javascript:void(0)" 
+                       onclick="openGallery(['Handwriting-live-drawing-Pandora-Fete-des -meres-Elodie-Clavier.jpg', 'Illustration-cartes-personnalisees-Pandora-Fete-des -meres-Elodie-Clavier.jpg'], `'Pandora loves moms' live sessions on the occasion of Mother's Day.`);" 
+                       class="invisible-click-overlay" 
+                       title="Click to view project"></a>
+                </div>
+                <div class="portfolio-info">
+                    <h3>Pandora – Mother's Day</h3>
+                    <span class="category">Live drawing</span>
+                </div>
+            </div>
+
+            <div class="portfolio-item live-drawing">
+                <div class="image-box">
+                    <img src="Illustration-live-drawing-Louis-Vuitton-Champs-Elysees-elodie-clavier-Christmas.jpg" alt="Louis Vuitton – Christmas">
+                    <a href="javascript:void(0)" 
+                       onclick="openGallery(['Illustration-live-drawing-Louis-Vuitton-Champs-Elysees-elodie-clavier.jpg'], `Live drawing at the Louis Vuitton boutique on the Champs-Elysées<br>during the Christmas holidays.`);" 
+                       class="invisible-click-overlay" 
+                       title="Click to view project"></a>
+                </div>
+                <div class="portfolio-info">
+                    <h3>Louis Vuitton – Christmas</h3>
+                    <span class="category">Live drawing</span>
+                </div>
+            </div>
+
+            <div class="portfolio-item communication">
+                <div class="image-box">
+                    <img src="Shopping-bag-Chanel-Illustration-encre.jpg" alt="CHANEL SHOPPING BAG">
+                </div>
+                <div class="portfolio-info">
+                    <h3>Chanel shopping bag</h3>
+                    <span class="category">Communication</span>
+                </div>
+            </div>
+
+            <div class="portfolio-item communication">
+                <div class="image-box">
+                    <img src="illustration-couvent-des-minimes-elodie-clavier.jpg" alt="Couvent des Minimes">
+                </div>
+                <div class="portfolio-info">
+                    <h3>Couvent des Minimes</h3>
+                    <span class="category">Communication</span>
+                </div>
+            </div>
+
+            <div class="portfolio-item live-drawing">
+                <div class="image-box">
+                    <img src="Louis-Vuitton-brunch-illustration-event.jpg" alt="Louis Vuitton – Christmas Brunch">
+                </div>
+                <div class="portfolio-info">
+                    <h3>Louis Vuitton – Brunch</h3>
+                    <span class="category">Live drawing</span>
+                </div>
+            </div>
+
+            <div class="portfolio-item communication">
+                <div class="image-box">
+                    <img src="Illustration-le-Ritz-silhouette-encre-marry-me-at-Ritz-Elodie-Clavier.jpg" alt="Ritz Paris - Marry me">
+                    <a href="javascript:void(0)" 
+                       onclick="openGallery(['Illustration-le-Ritz-silhouette-encre-marry-me-at-Ritz-Elodie-Clavier-2.jpg', 'Illustration-le-Ritz-silhouette-mariee-encre-marry-me-at-Ritz-Elodie-Clavier.jpg', 'Illustration-le-Ritz-silhouettes-couple-encre-marry-me-at-Ritz-Elodie-Clavier.jpg'], `Creation of silhouettes on the theme of marriage<br> for the Ritz communication campaign.`);" 
+                       class="invisible-click-overlay" 
+                       title="Click to view project"></a>
+                </div>
+                <div class="portfolio-info">
+                    <h3>Ritz Paris - Marry me</h3>
+                    <span class="category">Communication</span>
+                </div>
+            </div>
+
+            <div class="portfolio-item live-drawing">
+                <div class="image-box">
+                    <img src="Illustration-live-drawing-Chanel-place-vendome-elodie-clavier.jpg" alt="Chanel – Christmas">
+                    <a href="javascript:void(0)" 
+                       onclick="openGallery(['Illustration-live-drawing-Chanel-noel-silhouette-elodie-clavier.jpg'], `Live drawing for the Chanel Vendôme boutique<br>on the occasion of the Christmas holidays.<br><br><img src='Illustration-live-drawing-Chanel-noel-place-vendome-elodie-clavier.jpg' alt='Chanel Place Vendôme' style='max-width:100%; max-height:250px; display:block; margin:15px auto 0 auto; border-radius:2px;'>`);" 
+                       class="invisible-click-overlay" 
+                       title="Click to view project"></a>
+                </div>
+                <div class="portfolio-info">
+                    <h3>Chanel – Christmas</h3>
+                    <span class="category">Live drawing</span>
+                </div>
+            </div>
+
+            <div class="portfolio-item communication">
+                <div class="image-box">
+                    <img src="Illustration-Girl-silhouette-encre-Elodie-Clavier.jpg" alt="BRUNETTE GIRL">
+                </div>
+                <div class="portfolio-info">
+                    <h3>Brunette girl</h3>
+                    <span class="category">Communication</span>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>Copyright © Elodie Clavier. All rights reserved.</p>
+        <p style="margin-top: 15px; font-size: 0.65rem; letter-spacing: 1px;">
+            <a href="mentions-legales-en.html" style="color: #aaaaaa; text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='#1a1a1a'" onmouseout="this.style.color='#aaaaaa'">Legal Notice</a>
+        </p>
+    </footer>
+
+    <script>
+        window.onscroll = function() {
+            var header = document.getElementById("myHeader");
+            if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+                header.classList.add("scrolled");
+            } else {
+                header.classList.remove("scrolled");
+            }
+        };
+
+        function filterCategory(category) {
+            var items = document.getElementsByClassName('portfolio-item');
+            
+            for (var i = 0; i < items.length; i++) {
+                var item = items[i];
+                if (category === 'all' || item.classList.contains(category)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            }
+
+            var links = document.querySelectorAll('.filter-container a');
+            links.forEach(function(link) {
+                link.classList.remove('active');
+            });
+            
+            if (category === 'all' && document.getElementById('all-btn')) document.getElementById('all-btn').classList.add('active');
+            if (category === 'live-drawing' && document.getElementById('live-btn')) document.getElementById('live-btn').classList.add('active');
+            if (category === 'communication' && document.getElementById('communication-btn')) document.getElementById('communication-btn').classList.add('active');
+            if (category === 'editorial' && document.getElementById('editorial-btn')) document.getElementById('editorial-btn').classList.add('active');
+        }
+
+        window.addEventListener('DOMContentLoaded', function() {
+            var savedFilter = localStorage.getItem('filter');
+            if (savedFilter) {
+                filterCategory(savedFilter);
+                localStorage.removeItem('filter');
+            }
+        });
+
+        var currentGalleryImages = [];
+        var currentImageIndex = 0;
+        var currentGalleryCaption = ""; 
+
+        function openGallery(imagesArray, captionText) {
+            currentGalleryImages = imagesArray;
+            currentImageIndex = 0;
+            currentGalleryCaption = captionText || ""; 
+            updateLightboxView();
+        }
+
+        function updateLightboxView() {
+            document.getElementById('lightboxImg').src = currentGalleryImages[currentImageIndex];
+            document.getElementById('imageLightbox').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+
+            var captionDiv = document.getElementById('lightboxCaption');
+            if (currentGalleryCaption) {
+                captionDiv.innerHTML = currentGalleryCaption.replace(/\n/g, '<br>');
+                captionDiv.style.display = 'block';
+            } else {
+                captionDiv.style.display = 'none';
+            }
+
+            if (currentGalleryImages.length > 1) {
+                document.getElementById('lightboxPrev').style.display = 'block';
+                document.getElementById('lightboxNext').style.display = 'block';
+            } else {
+                document.getElementById('lightboxPrev').style.display = 'none';
+                document.getElementById('lightboxNext').style.display = 'none';
+            }
+        }
+
+        function changeImage(direction, event) {
+            event.stopPropagation();
+            currentImageIndex += direction;
+            if (currentImageIndex >= currentGalleryImages.length) currentImageIndex = 0;
+            if (currentImageIndex < 0) currentImageIndex = currentGalleryImages.length - 1;
+            document.getElementById('lightboxImg').src = currentGalleryImages[currentImageIndex];
+        }
+
+        function closeLightbox(event) {
+            if (event.target.id === 'imageLightbox') {
+                forceCloseLightbox();
+            }
+        }
+
+        function forceCloseLightbox() {
+            document.getElementById('imageLightbox').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    </script>
+
+    <div id="imageLightbox" class="lightbox" onclick="closeLightbox(event)">
+        <span class="lightbox-close" onclick="forceCloseLightbox()">&times;</span>
+        <span id="lightboxPrev" class="lightbox-nav-btn" onclick="changeImage(-1, event)">&#10094;</span>
+        <img id="lightboxImg" src="" alt="Project Zoom">
+        <span id="lightboxNext" class="lightbox-nav-btn" onclick="changeImage(1, event)">&#10095;</span>
+        <div id="lightboxCaption" class="lightbox-caption" style="display:none;" onclick="event.stopPropagation()"></div>
+    </div>
+
+</body>
+</html>
