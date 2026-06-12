@@ -194,14 +194,14 @@
             color: #aaaaaa; 
         }
 
-        /* Sélecteur de langue */
+        /* Sélecteur de langue en haut à droite sur ordinateur */
         .lang-switch {
+            position: absolute;
+            top: 25px;
+            right: 10%;
             display: flex;
             gap: 10px;
             align-items: center;
-            margin-left: 35px;
-            border-left: 1px solid #eeeeee;
-            padding-left: 20px;
         }
         .lang-switch a {
             text-decoration: none;
@@ -216,22 +216,31 @@
         }
 
         @media (max-width: 768px) {
-            body { padding-top: 190px; } /* Donne de l'espace sous le menu pour ne rien couper */
+            body { padding-top: 230px; } /* Augmenté légèrement pour laisser de la place au bloc langue sur mobile */
             header { 
                 flex-direction: column; 
                 height: auto; 
                 padding: 15px 10px; 
                 gap: 10px; 
-                position: fixed; /* Reste bien fixé en haut */
+                position: fixed; 
                 align-items: center; 
             }
             header.scrolled { height: auto; }
             header.scrolled .logo-container img { height: 45px; }
-            .logo-container img { height: 55px; } /* Ton logo à taille idéale sur mobile */
+            .logo-container img { height: 55px; }
             
+            /* Gestion du bouton de langue sur mobile */
+            .lang-switch {
+                position: static; /* Reprend une place normale au centre */
+                margin-left: 0;
+                border-left: none;
+                padding-left: 0;
+                order: -1; /* Optionnel : place le FR|EN tout en haut, même au-dessus du logo sur mobile */
+            }
+
             /* LA LIGNE MAGIQUE POUR VOS RUBRIQUES : */
             nav ul { 
-                flex-direction: column; /* Aligne les rubriques proprement de haut en bas */
+                flex-direction: column; 
                 gap: 8px; 
                 text-align: center;
                 padding: 0;
@@ -321,30 +330,28 @@
             </a>
         </div>
         
-        <div style="display: flex; align-items: center;">
-            <nav>
-                <ul>
-                    <li>
-                        <a href="index.html" class="active-link">Portfolio ▾</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="index.html" onclick="localStorage.setItem('filter', 'communication'); if(document.getElementById('portfolioGrid')) { filterCategory('communication'); event.preventDefault(); }">Communication</a></li>
-                            <li><a href="index.html" onclick="localStorage.setItem('filter', 'live-drawing'); if(document.getElementById('portfolioGrid')) { filterCategory('live-drawing'); event.preventDefault(); }">Live drawing</a></li>
-                            <li><a href="index.html" onclick="localStorage.setItem('filter', 'editorial'); if(document.getElementById('portfolioGrid')) { filterCategory('editorial'); event.preventDefault(); }">Editorial</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="about.html">ABOUT</a></li>
-                    <li><a href="sur-mesure.html">SUR-MESURE</a></li>
-                    <li><a href="boutique-shop.html">BOUTIQUE/SHOP</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </nav>
+        <nav>
+            <ul>
+                <li>
+                    <a href="index.html" class="active-link">Portfolio ▾</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="index.html" onclick="localStorage.setItem('filter', 'communication'); if(document.getElementById('portfolioGrid')) { filterCategory('communication'); event.preventDefault(); }">Communication</a></li>
+                        <li><a href="index.html" onclick="localStorage.setItem('filter', 'live-drawing'); if(document.getElementById('portfolioGrid')) { filterCategory('live-drawing'); event.preventDefault(); }">Live drawing</a></li>
+                        <li><a href="index.html" onclick="localStorage.setItem('filter', 'editorial'); if(document.getElementById('portfolioGrid')) { filterCategory('editorial'); event.preventDefault(); }">Editorial</a></li>
+                    </ul>
+                </li>
+                <li><a href="about.html">ABOUT</a></li>
+                <li><a href="sur-mesure.html">SUR-MESURE</a></li>
+                <li><a href="boutique-shop.html">BOUTIQUE/SHOP</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
 
-            <!-- Boutons de langue -->
-            <div class="lang-switch">
-                <a href="#" class="active-lang">FR</a>
-                <span style="color: #eeeeee; font-size: 0.75rem;">|</span>
-                <a href="index-en.html">EN</a>
-            </div>
+        <!-- Boutons de langue isolés et repositionnés -->
+        <div class="lang-switch">
+            <a href="#" class="active-lang">FR</a>
+            <span style="color: #eeeeee; font-size: 0.75rem;">|</span>
+            <a href="index-en.html">EN</a>
         </div>
     </header>
 
