@@ -1,28 +1,4 @@
-@media (max-width: 768px) {
-            body { padding-top: 190px; } /* Donne de l'espace sous le menu pour ne rien couper */
-            header { 
-                flex-direction: column; 
-                height: auto; 
-                padding: 15px 10px; 
-                gap: 10px; 
-                position: fixed; /* Reste bien fixé en haut */
-                align-items: center; 
-            }
-            header.scrolled { height: auto; }
-            header.scrolled .logo-container img { height: 45px; }
-            .logo-container img { height: 55px; } /* Ton logo à taille idéale sur mobile */
-            
-            /* LA LIGNE MAGIQUE POUR VOS RUBRIQUES : */
-            nav ul { 
-                flex-direction: column; /* Aligne les rubriques proprement de haut en bas */
-                gap: 8px; 
-                text-align: center;
-                padding: 0;
-            }
-            
-            .portfolio-grid { grid-template-columns: 1fr; gap: 35px; }
-        }
-        }<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -44,19 +20,26 @@
         nav li { position: relative; padding: 10px 0; }
         nav a { text-decoration: none; color: #1a1a1a; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 500; }
         nav a:hover, nav .active-link { color: #999999; }
-        .dropdown-menu { display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); background-color: #ffffff; border: 1px solid #eeeeee; box-shadow: 0px 8px 16px rgba(0,0,0,0.05); min-width: 180px; padding: 10px 0; list-style: none; flex-direction: column; }
+        
+        .dropdown-menu { display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); background-color: #ffffff; border: 1px solid #eeeeee; box-shadow: 0px 8px 16px rgba(0,0,0,0.05); min-width: 180px; padding: 10px 0; list-style: none; flex-direction: column; z-index: 2000; }
         .dropdown-menu li { padding: 0; text-align: center; }
         .dropdown-menu a { display: block; padding: 10px 15px; font-size: 0.75rem; color: #555555; letter-spacing: 1px; white-space: nowrap; }
         .dropdown-menu a:hover { background-color: #f9f9f9; color: #1a1a1a; }
         nav li:hover .dropdown-menu { display: flex; }
+
+        .lang-switch { display: flex; align-items: center; gap: 10px; margin-left: 10px; }
+        .lang-switch a { text-decoration: none; color: #aaaaaa; font-size: 0.75rem; font-weight: 500; letter-spacing: 1px; transition: color 0.3s ease; }
+        .lang-switch a:hover { color: #1a1a1a; }
+        .lang-switch a.active-lang { color: #1a1a1a; font-weight: 600; pointer-events: none; }
+
         header.scrolled { height: 90px; box-shadow: 0px 4px 10px rgba(0,0,0,0.03); }
         header.scrolled .logo-container img { height: 40px; }
+        
         .filter-container { max-width: 1200px; margin: 30px auto; padding: 0 20px; text-align: center; }
         .filter-container ul { list-style: none; display: flex; justify-content: center; gap: 25px; flex-wrap: wrap; }
         .filter-container a { text-decoration: none; color: #888888; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 500; transition: color 0.3s; padding: 5px 10px; cursor: pointer; }
         .filter-container a.active, .filter-container a:hover { color: #1a1a1a; border-bottom: 1px solid #1a1a1a; }
         
-        /* STYLES DES TEXTES D'INTRODUCTION (COMMUNS) */
         .shop-intro-text { display: none; max-width: 750px; margin: 40px auto 30px auto; padding: 0 20px; text-align: center; }
         .shop-intro-text h2 { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 600; margin-bottom: 15px; color: #1a1a1a; }
         .shop-intro-text p { font-size: 0.85rem; letter-spacing: 0.5px; color: #555555; margin-bottom: 15px; line-height: 1.8; }
@@ -65,47 +48,81 @@
         .shop-grid { max-width: 1250px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 45px; padding: 0 20px; }
         .product-card { background-color: #ffffff; text-decoration: none; display: none; color: inherit; }
         
-        /* MODIFIÉ : Sécurisation et gestion de la boîte de l'image pour Pinterest */
         .image-box { width: 100%; position: relative; overflow: hidden; background-color: #fcfcfc; display: block; }
         .product-card img { width: 100%; height: auto; display: block; transition: opacity 0.4s ease; position: relative; z-index: 1; }
         .product-card:hover img { opacity: 0.85; }
         
-        /* AJOUTÉ : On s'assure que le picto Pinterest passe toujours au-dessus de tout au survol */
         .image-box span[class*="PIN_"], 
-        .image-box a[class*="PIN_"] {
-            z-index: 10000 !important;
-        }
+        .image-box a[class*="PIN_"] { z-index: 10000 !important; }
 
         .product-info { padding: 18px 0; text-align: left; display: flex; justify-content: space-between; align-items: flex-start; }
         .product-details h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; font-weight: 400; color: #111111; margin-bottom: 4px; }
         .add-to-cart-btn { background-color: transparent; border: 1px solid #1a1a1a; color: #1a1a1a; padding: 6px 15px; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: all 0.3s ease; display: inline-block; text-decoration: none; text-align: center; }
         .add-to-cart-btn:hover { background-color: #1a1a1a; color: #ffffff; }
+        
         footer { max-width: 1200px; margin: 80px auto 0 auto; text-align: center; border-top: 1px solid #eeeeee; padding-top: 40px; font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase; color: #aaaaaa; }
+
+        /* ========================================================
+           BLOC DES STYLES RESPONSIVE MOBILE REPLACÉ ET SÉCURISÉ
+           ======================================================== */
         @media (max-width: 768px) {
-            /* --- Réglages du Menu et Logo (Réparation) --- */
             body { 
-                padding-top: 260px; /* Donne de l'espace pour le menu empilé */
+                padding-top: 340px; 
             } 
             header { 
                 height: auto; 
-                flex-direction: column; /* Aligne la signature au-dessus du menu */
+                flex-direction: column; 
                 padding: 15px 5%; 
-                gap: 15px;
+                gap: 10px;
+                position: fixed;
+                align-items: center;
             }
+            header.scrolled { height: auto; }
+            header.scrolled .logo-container img { height: 45px; }
             .logo-container img { 
-                height: 70px; /* Réduit la taille du logo sur mobile */
+                height: 55px; 
+            }
+            nav {
+                flex-direction: column;
+                gap: 10px;
             }
             nav ul { 
-                flex-wrap: wrap; /* Permet aux liens de revenir à la ligne si besoin */
-                justify-content: center; 
-                gap: 15px; 
+                flex-direction: column;
+                gap: 5px; 
+                text-align: center; 
+                padding: 0; 
+            }
+            nav li {
+                padding: 5px 0;
             }
             nav a {
-                font-size: 0.75rem; /* Écrit un tout petit peu plus petit sur mobile */
+                font-size: 0.75rem;
                 letter-spacing: 1px;
             }
-
-            /* --- Réglages spécifiques de la Boutique (Conservés) --- */
+            .dropdown-menu {
+                position: relative;
+                top: 0;
+                left: 0;
+                transform: none;
+                box-shadow: none;
+                border: none;
+                padding: 5px 0;
+                min-width: auto;
+                background-color: #fafafa; 
+                margin-top: 5px;
+                border-radius: 4px;
+            }
+            nav li:hover .dropdown-menu {
+                display: flex;
+            }
+            .dropdown-menu a {
+                padding: 6px 15px;
+            }
+            .lang-switch {
+                margin-left: 0;
+                margin-top: 5px;
+                justify-content: center;
+            }
             .shop-grid { 
                 grid-template-columns: 1fr; 
                 gap: 30px; 
@@ -123,25 +140,30 @@
 
     <header id="myHeader">
         <div class="logo-container">
-            <a href="index.html">
+            <a href="index-en.html">
                 <img src="Signature-Elodie-Clavier.jpg" alt="Logo" data-pin-nopin="true">
             </a>
         </div>
         <nav>
             <ul>
                 <li>
-                    <a href="index.html">Portfolio ▾</a>
+                    <a href="index-en.html">Portfolio ▾</a>
                     <ul class="dropdown-menu">
-                        <li><a href="index.html" onclick="localStorage.setItem('filter', 'communication'); if(document.getElementById('portfolioGrid')) { filterCategory('communication'); event.preventDefault(); }">Communication</a></li>
-                        <li><a href="index.html" onclick="localStorage.setItem('filter', 'live-drawing'); if(document.getElementById('portfolioGrid')) { filterCategory('live-drawing'); event.preventDefault(); }">Live drawing</a></li>
-                        <li><a href="index.html" onclick="localStorage.setItem('filter', 'editorial'); if(document.getElementById('portfolioGrid')) { filterCategory('editorial'); event.preventDefault(); }">Editorial</a></li>
+                        <li><a href="index-en.html" onclick="localStorage.setItem('filter', '01_projects'); if(document.getElementById('portfolioGrid')) { filterCategory('01_projects'); event.preventDefault(); }">Projects</a></li>
+                        <li><a href="index-en.html" onclick="localStorage.setItem('filter', 'live-drawing'); if(document.getElementById('portfolioGrid')) { filterCategory('live-drawing'); event.preventDefault(); }">Live drawing</a></li>
+                        <li><a href="index-en.html" onclick="localStorage.setItem('filter', 'personal'); if(document.getElementById('portfolioGrid')) { filterCategory('personal'); event.preventDefault(); }">Personal</a></li>
                     </ul>
                 </li>
-                <li><a href="about.html">ABOUT</a></li>
-                <li><a href="sur-mesure.html">CUSTOM WORK</a></li>
-                <li><a href="boutique-shop.html" class="active-link">BOUTIQUE/SHOP</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="about-en.html">ABOUT</a></li>
+                <li><a href="sur-mesure-en.html">CUSTOM WORK</a></li>
+                <li><a href="boutique-shop-en.html" class="active-link">BOUTIQUE/SHOP</a></li>
+                <li><a href="contact-en.html">Contact</a></li>
             </ul>
+            <div class="lang-switch">
+                <a href="boutique-shop.html">FR</a>
+                <span style="color: #eeeeee; font-size: 0.75rem;">|</span>
+                <a href="boutique-shop-en.html" class="active-lang">EN</a>
+            </div>
         </nav>
     </header>
 
@@ -160,9 +182,9 @@
         </div>
 
         <div id="editionsArtIntro" class="shop-intro-text">
-    <p>Meticulously crafted ink illustrations, reproduced in very limited art editions of only 60 copies. Each fine art print is signed and numbered by my hand.</p>
-    <p class="coming-soon">✨ Collection pending – Coming soon ✨</p>
-</div>
+            <p>Meticulously crafted ink illustrations, reproduced in very limited art editions of only 60 copies. Each fine art print is signed and numbered by my hand.</p>
+            <p class="coming-soon">✨ Collection pending – Coming soon ✨</p>
+        </div>
 
         <div id="editionsNumeriquesIntro" class="shop-intro-text">
             <p>Modern artwork entirely created on a digital graphics tablet.<br>Each piece is printed on premium fine art paper, hand-signed and numbered<br> in a limited edition of 60 prints.</p>
@@ -171,7 +193,7 @@
         <div id="illustrationsIntro" class="shop-intro-text">
             <p>Here you will find my original illustrations, available in small and medium formats.<br>The collection is regularly updated with new pieces, so feel free to visit again soon...</p>
             <p class="tax-info">Did you know? In France, purchasing an original artwork offers corporate tax deductions<br>for companies and professionals: corporate entities can deduct 20% of the artwork's purchase price from their taxable income each year for 5 years.</p>
-    <p class="coming-soon">✨ Collection pending – Coming soon ✨</p>
+            <p class="coming-soon">✨ Collection pending – Coming soon ✨</p>
         </div>
 
         <div class="shop-grid">
@@ -225,7 +247,6 @@
                 </div>
             </div>
 
-            <!-- BLOC L'Échappée configurée avec les attributs nécessaires -->
             <div class="product-card editions-numeriques">
                 <div class="image-box">
                     <img src="Illustration-affiche-lechappee-elodie-clavier.jpg" 
@@ -245,9 +266,9 @@
     <footer>
         <p>Copyright © Elodie Clavier. All rights reserved.</p>
         <p style="margin-top: 15px; font-size: 0.65rem; letter-spacing: 1px;">
-            <a href="mentions-legales.html" style="color: #aaaaaa; text-decoration: none; margin-right: 15px; transition: color 0.3s;" onmouseover="this.style.color='#1a1a1a'" onmouseout="this.style.color='#aaaaaa'">Legal Notice</a>
+            <a href="mentions-legales-en.html" style="color: #aaaaaa; text-decoration: none; margin-right: 15px; transition: color 0.3s;" onmouseover="this.style.color='#1a1a1a'" onmouseout="this.style.color='#aaaaaa'">Legal Notice</a>
             <span style="color: #eeeeee;">|</span>
-            <a href="cgv.html" style="color: #aaaaaa; text-decoration: none; margin-left: 15px; transition: color 0.3s;" onmouseover="this.style.color='#1a1a1a'" onmouseout="this.style.color='#aaaaaa'">Terms and Conditions (CGV)</a>
+            <a href="cgv-en.html" style="color: #aaaaaa; text-decoration: none; margin-left: 15px; transition: color 0.3s;" onmouseover="this.style.color='#1a1a1a'" onmouseout="this.style.color='#aaaaaa'">Terms and Conditions (CGV)</a>
         </p>
     </footer>
 
