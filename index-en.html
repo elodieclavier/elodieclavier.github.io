@@ -31,9 +31,9 @@
             background-color: #ffffff;
             z-index: 1000;
             display: flex;
-            justify-content: center; /* Aligne le logo et le menu au centre */
+            justify-content: center; 
             align-items: center;
-            gap: 60px; /* Crée un espace élégant entre le logo et le menu principal */
+            gap: 60px; 
             padding: 0 10%;
             border-bottom: 1px solid #f5f5f5;
             transition: all 0.4s ease;
@@ -195,7 +195,6 @@
             color: #aaaaaa; 
         }
 
-        /* Language Switcher - Aligned top-right like FR version */
         .lang-switch {
             position: absolute;
             top: 35px;
@@ -216,8 +215,9 @@
             color: #1a1a1a;
         }
 
+        /* --- FIXED MOBILE SECTION FOR EN VERSION --- */
         @media (max-width: 768px) {
-            body { padding-top: 230px; } /* Space for language switch on mobile */
+            body { padding-top: 230px; } 
             header { 
                 flex-direction: column; 
                 height: auto; 
@@ -230,7 +230,6 @@
             header.scrolled .logo-container img { height: 45px; }
             .logo-container img { height: 55px; }
             
-            /* Language button handling on mobile */
             .lang-switch {
                 position: static;
                 margin-left: 0;
@@ -244,6 +243,21 @@
                 gap: 8px; 
                 text-align: center;
                 padding: 0;
+            }
+
+            /* Prevents the dropdown menu from overlapping main links on mobile */
+            .dropdown-menu {
+                position: static;
+                transform: none;
+                box-shadow: none;
+                border: none;
+                min-width: 100%;
+                padding: 5px 0 0 0;
+                background-color: transparent;
+            }
+            .dropdown-menu a {
+                padding: 6px 15px;
+                color: #777777;
             }
             
             .portfolio-grid { grid-template-columns: 1fr; gap: 35px; }
@@ -347,7 +361,6 @@
             </ul>
         </nav>
 
-        <!-- Language buttons isolated and matching FR version's style/position -->
         <div class="lang-switch">
             <a href="index.html">FR</a>
             <span style="color: #eeeeee; font-size: 0.75rem;">|</span>
