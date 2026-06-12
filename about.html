@@ -71,6 +71,7 @@
             padding: 10px 0; 
             list-style: none; 
             flex-direction: column; 
+            z-index: 2000;
         }
         .dropdown-menu li { padding: 0; text-align: center; }
         .dropdown-menu a { display: block; padding: 10px 15px; font-size: 0.75rem; color: #555555; letter-spacing: 1px; white-space: nowrap; }
@@ -182,30 +183,62 @@
             .vc-title-separator { text-align: center !important; order: -1; }
         }
 
+        /* ========================================================
+           CORRECTIONS AJUSTÉES POUR LE MENU MOBILE SANS CHEVAUCHEMENT
+           ======================================================== */
         @media (max-width: 768px) {
-            body { padding-top: 190px; } /* Donne de l'espace sous le menu pour ne rien couper */
+            body { 
+                padding-top: 310px; /* Augmenté pour accueillir le menu plus grand sans masquer l'image */
+            } 
             header { 
                 flex-direction: column; 
                 height: auto; 
                 padding: 15px 10px; 
                 gap: 10px; 
-                position: fixed; /* Reste bien fixé en haut */
+                position: fixed; 
                 align-items: center; 
             }
             header.scrolled { height: auto; }
             header.scrolled .logo-container img { height: 45px; }
-            .logo-container img { height: 55px; } /* Ton logo à taille idéale sur mobile */
+            .logo-container img { height: 55px; } 
             
-            /* LA LIGNE MAGIQUE POUR VOS RUBRIQUES : */
             nav ul { 
-                flex-direction: column; /* Aligne les rubriques proprement de haut en bas */
-                gap: 8px; 
+                flex-direction: column; 
+                gap: 5px; 
                 text-align: center;
                 padding: 0;
             }
+
+            nav li {
+                padding: 5px 0;
+            }
+
+            /* Évite que le sous-menu flotte et écrase le reste */
+            .dropdown-menu {
+                position: relative;
+                top: 0;
+                left: 0;
+                transform: none;
+                box-shadow: none;
+                border: none;
+                padding: 5px 0;
+                min-width: auto;
+                background-color: #fafafa; /* Léger fond pour le distinguer */
+                margin-top: 5px;
+                border-radius: 4px;
+            }
+
+            /* Affiche le sous-menu de manière fluide sous "Portfolio" */
+            nav li:hover .dropdown-menu {
+                display: flex;
+            }
+
+            .dropdown-menu a {
+                padding: 6px 15px;
+            }
             
             .portfolio-grid { grid-template-columns: 1fr; gap: 35px; }
-            .about-photo-col { height: 280px; } /* <--- ON GARDE CETTE LIGNE ESSENTIELLE POUR TA PHOTO ! */
+            .about-photo-col { height: 280px; } 
         }
     </style>
 </head>
@@ -264,11 +297,11 @@
     </main>
 
     <footer>
-    <p>Copyright © Elodie Clavier. All rights reserved.</p>
-    <p style="margin-top: 15px; font-size: 0.65rem; letter-spacing: 1px;">
-        <a href="mentions-legales.html" style="color: #aaaaaa; text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='#1a1a1a'" onmouseout="this.style.color='#aaaaaa'">Mentions Légales</a>
-    </p>
-</footer>
+        <p>Copyright © Elodie Clavier. All rights reserved.</p>
+        <p style="margin-top: 15px; font-size: 0.65rem; letter-spacing: 1px;">
+            <a href="mentions-legales.html" style="color: #aaaaaa; text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='#1a1a1a'" onmouseout="this.style.color='#aaaaaa'">Mentions Légales</a>
+        </p>
+    </footer>
 
     <script>
         window.onscroll = function() {
