@@ -10,8 +10,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-    <link rel="icon" type="image/png" href="Favicon3.png">
-
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
@@ -33,8 +31,9 @@
             background-color: #ffffff;
             z-index: 1000;
             display: flex;
-            justify-content: space-between;
+            justify-content: center; /* Aligne le logo et le menu au centre */
             align-items: center;
+            gap: 60px; /* Crée un espace élégant entre le logo et le menu principal */
             padding: 0 10%;
             border-bottom: 1px solid #f5f5f5;
             transition: all 0.4s ease;
@@ -178,6 +177,12 @@
             display: block;
         }
 
+        .btn-action:hover {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            cursor: pointer;
+        }
+
         footer { 
             max-width: 1200px; 
             margin: 80px auto 0 auto; 
@@ -190,14 +195,14 @@
             color: #aaaaaa; 
         }
 
-        /* Language Switcher */
+        /* Language Switcher - Aligned top-right like FR version */
         .lang-switch {
+            position: absolute;
+            top: 35px;
+            right: 5%;
             display: flex;
             gap: 10px;
             align-items: center;
-            margin-left: 35px;
-            border-left: 1px solid #eeeeee;
-            padding-left: 20px;
         }
         .lang-switch a {
             text-decoration: none;
@@ -212,22 +217,30 @@
         }
 
         @media (max-width: 768px) {
-            body { padding-top: 190px; } /* Donne de l'espace sous le menu pour ne rien couper */
+            body { padding-top: 230px; } /* Space for language switch on mobile */
             header { 
                 flex-direction: column; 
                 height: auto; 
                 padding: 15px 10px; 
                 gap: 10px; 
-                position: fixed; /* Reste bien fixé en haut */
+                position: fixed; 
                 align-items: center; 
             }
             header.scrolled { height: auto; }
             header.scrolled .logo-container img { height: 45px; }
-            .logo-container img { height: 55px; } /* Ton logo à taille idéale sur mobile */
+            .logo-container img { height: 55px; }
             
-            /* LA LIGNE MAGIQUE POUR VOS RUBRIQUES : */
+            /* Language button handling on mobile */
+            .lang-switch {
+                position: static;
+                margin-left: 0;
+                border-left: none;
+                padding-left: 0;
+                order: -1;
+            }
+
             nav ul { 
-                flex-direction: column; /* Aligne les rubriques proprement de haut en bas */
+                flex-direction: column; 
                 gap: 8px; 
                 text-align: center;
                 padding: 0;
@@ -317,30 +330,28 @@
             </a>
         </div>
         
-        <div style="display: flex; align-items: center;">
-            <nav>
-                <ul>
-                    <li>
-                        <a href="index.html" class="active-link">Portfolio ▾</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="index.html" onclick="localStorage.setItem('filter', 'communication');">Communication</a></li>
-                            <li><a href="index.html" onclick="localStorage.setItem('filter', 'live-drawing');">Live drawing</a></li>
-                            <li><a href="index.html" onclick="localStorage.setItem('filter', 'editorial');">Editorial</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="about-en.html">ABOUT</a></li>
-                    <li><a href="sur-mesure-en.html">BESPOKE</a></li>
-                    <li><a href="boutique-shop-en.html">BOUTIQUE/SHOP</a></li>
-                    <li><a href="contact-en.html">Contact</a></li>
-                </ul>
-            </nav>
+        <nav>
+            <ul>
+                <li>
+                    <a href="index.html" class="active-link">Portfolio ▾</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="index.html" onclick="localStorage.setItem('filter', 'communication'); if(document.getElementById('portfolioGrid')) { filterCategory('communication'); event.preventDefault(); }">Communication</a></li>
+                        <li><a href="index.html" onclick="localStorage.setItem('filter', 'live-drawing'); if(document.getElementById('portfolioGrid')) { filterCategory('live-drawing'); event.preventDefault(); }">Live drawing</a></li>
+                        <li><a href="index.html" onclick="localStorage.setItem('filter', 'editorial'); if(document.getElementById('portfolioGrid')) { filterCategory('editorial'); event.preventDefault(); }">Editorial</a></li>
+                    </ul>
+                </li>
+                <li><a href="about-en.html">ABOUT</a></li>
+                <li><a href="sur-mesure-en.html">BESPOKE</a></li>
+                <li><a href="boutique-shop-en.html">BOUTIQUE/SHOP</a></li>
+                <li><a href="contact-en.html">Contact</a></li>
+            </ul>
+        </nav>
 
-            <!-- Language Buttons -->
-            <div class="lang-switch">
-                <a href="index.html">FR</a>
-                <span style="color: #eeeeee; font-size: 0.75rem;">|</span>
-                <a href="#" class="active-lang">EN</a>
-            </div>
+        <!-- Language buttons isolated and matching FR version's style/position -->
+        <div class="lang-switch">
+            <a href="index.html">FR</a>
+            <span style="color: #eeeeee; font-size: 0.75rem;">|</span>
+            <a href="#" class="active-lang">EN</a>
         </div>
     </header>
 
@@ -560,7 +571,7 @@
                 </div>
             </div>
 
-<div class="portfolio-item communication">
+            <div class="portfolio-item communication">
                 <div class="image-box">
                     <img src="Illustration-Surfeur-silhouette-Elodie-Clavier.jpg" alt="Surfer">
                 </div>
@@ -584,7 +595,7 @@
                 </div>
             </div>
 
-<div class="portfolio-item live-drawing">
+            <div class="portfolio-item live-drawing">
                 <div class="image-box">
                     <img src="Illustration-le-petit-prince-montblanc-live-drawing-elodie-clavier-encre.jpg" alt="Montblanc – The Little Prince">
                     <a href="javascript:void(0)" 
