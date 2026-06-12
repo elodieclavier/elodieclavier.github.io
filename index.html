@@ -31,9 +31,9 @@
             background-color: #ffffff;
             z-index: 1000;
             display: flex;
-            justify-content: center; /* Aligne le logo et le menu au centre */
+            justify-content: center; 
             align-items: center;
-            gap: 60px; /* Crée un espace élégant entre le logo et le menu principal */
+            gap: 60px; 
             padding: 0 10%;
             border-bottom: 1px solid #f5f5f5;
             transition: all 0.4s ease;
@@ -195,11 +195,10 @@
             color: #aaaaaa; 
         }
 
-        /* Sélecteur de langue en haut à droite sur ordinateur */
         .lang-switch {
             position: absolute;
-            top: 35px; /* Légèrement descendu pour s'aligner sur la signature */
-            right: 5%; /* Aligné sur les bords extérieurs de votre grille */
+            top: 35px; 
+            right: 5%; 
             display: flex;
             gap: 10px;
             align-items: center;
@@ -216,8 +215,9 @@
             color: #1a1a1a;
         }
 
+        /* --- SECTION MOBILE CORRIGÉE --- */
         @media (max-width: 768px) {
-            body { padding-top: 230px; } /* Augmenté légèrement pour laisser de la place au bloc langue sur mobile */
+            body { padding-top: 230px; } 
             header { 
                 flex-direction: column; 
                 height: auto; 
@@ -230,21 +230,34 @@
             header.scrolled .logo-container img { height: 45px; }
             .logo-container img { height: 55px; }
             
-            /* Gestion du bouton de langue sur mobile */
             .lang-switch {
-                position: static; /* Reprend une place normale au centre */
+                position: static; 
                 margin-left: 0;
                 border-left: none;
                 padding-left: 0;
-                order: -1; /* Optionnel : place le FR|EN tout en haut, même au-dessus du logo sur mobile */
+                order: -1; 
             }
 
-            /* LA LIGNE MAGIQUE POUR VOS RUBRIQUES : */
             nav ul { 
                 flex-direction: column; 
                 gap: 8px; 
                 text-align: center;
                 padding: 0;
+            }
+
+            /* Correction du bug de chevauchement du sous-menu sur mobile */
+            .dropdown-menu {
+                position: static;
+                transform: none;
+                box-shadow: none;
+                border: none;
+                min-width: 100%;
+                padding: 5px 0 0 0;
+                background-color: transparent;
+            }
+            .dropdown-menu a {
+                padding: 6px 15px;
+                color: #777777;
             }
             
             .portfolio-grid { grid-template-columns: 1fr; gap: 35px; }
@@ -348,7 +361,6 @@
             </ul>
         </nav>
 
-        <!-- Boutons de langue isolés et repositionnés -->
         <div class="lang-switch">
             <a href="#" class="active-lang">FR</a>
             <span style="color: #eeeeee; font-size: 0.75rem;">|</span>
@@ -398,21 +410,21 @@
             </div>
 
             <div class="portfolio-item live-drawing">
-    <div class="image-box">
-        <img src="Illustration-live-drawing-le-peninsula-gala-d-hiver-Luxe-elodie-clavier.jpg" alt="Le Peninsula – Gala d’hiver">
-        <a href="javascript:void(0)" 
-           onclick="openGallery([
-               'Illustration-live-drawing-le-peninsula-gala-d-hiver-elodie-clavier.jpg',
-               'Illustration-live-drawing-le-peninsula-gala-d-hiver-Paris-elodie-clavier.jpg'
-           ], `Live drawing pour le Gala d’hiver au Peninsula.`);" 
-           class="invisible-click-overlay" 
-           title="Cliquez pour voir le projet"></a>
-    </div>
-    <div class="portfolio-info">
-        <h3>Le Peninsula – Gala d’hiver</h3>
-        <span class="category">Live drawing</span>
-    </div>
-</div>
+                <div class="image-box">
+                    <img src="Illustration-live-drawing-le-peninsula-gala-d-hiver-Luxe-elodie-clavier.jpg" alt="Le Peninsula – Gala d’hiver">
+                    <a href="javascript:void(0)" 
+                       onclick="openGallery([
+                           'Illustration-live-drawing-le-peninsula-gala-d-hiver-elodie-clavier.jpg',
+                           'Illustration-live-drawing-le-peninsula-gala-d-hiver-Paris-elodie-clavier.jpg'
+                       ], `Live drawing pour le Gala d’hiver au Peninsula.`);" 
+                       class="invisible-click-overlay" 
+                       title="Cliquez pour voir le projet"></a>
+                </div>
+                <div class="portfolio-info">
+                    <h3>Le Peninsula – Gala d’hiver</h3>
+                    <span class="category">Live drawing</span>
+                </div>
+            </div>
 
             <div class="portfolio-item communication">
                 <div class="image-box">
@@ -584,7 +596,7 @@
                 </div>
             </div>
 
-<div class="portfolio-item communication">
+            <div class="portfolio-item communication">
                 <div class="image-box">
                     <img src="Illustration-Surfeur-silhouette-Elodie-Clavier.jpg" alt="Surfeur">
                 </div>
@@ -610,7 +622,7 @@
                 </div>
             </div>
 
-<div class="portfolio-item live-drawing">
+            <div class="portfolio-item live-drawing">
                 <div class="image-box">
                     <img src="Illustration-le-petit-prince-montblanc-live-drawing-elodie-clavier-encre.jpg" alt="Montblanc – Le Petit Prince">
                     <a href="javascript:void(0)" 
@@ -866,11 +878,11 @@
     </main>
 
     <footer>
-    <p>Copyright © Elodie Clavier. All rights reserved.</p>
-    <p style="margin-top: 15px; font-size: 0.65rem; letter-spacing: 1px;">
-        <a href="mentions-legales.html" style="color: #aaaaaa; text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='#1a1a1a'" onmouseout="this.style.color='#aaaaaa'">Mentions Légales</a>
-    </p>
-</footer>
+        <p>Copyright © Elodie Clavier. All rights reserved.</p>
+        <p style="margin-top: 15px; font-size: 0.65rem; letter-spacing: 1px;">
+            <a href="mentions-legales.html" style="color: #aaaaaa; text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='#1a1a1a'" onmouseout="this.style.color='#aaaaaa'">Mentions Légales</a>
+        </p>
+    </footer>
 
     <script>
         window.onscroll = function() {
