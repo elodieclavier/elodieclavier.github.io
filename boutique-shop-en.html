@@ -81,7 +81,42 @@
         .add-to-cart-btn { background-color: transparent; border: 1px solid #1a1a1a; color: #1a1a1a; padding: 6px 15px; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: all 0.3s ease; display: inline-block; text-decoration: none; text-align: center; }
         .add-to-cart-btn:hover { background-color: #1a1a1a; color: #ffffff; }
         footer { max-width: 1200px; margin: 80px auto 0 auto; text-align: center; border-top: 1px solid #eeeeee; padding-top: 40px; font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase; color: #aaaaaa; }
-        @media (max-width: 768px) { body { padding-top: 180px; } .shop-grid { grid-template-columns: 1fr; gap: 30px; } .shop-intro-text h2 { font-size: 1rem; } .shop-intro-text p { font-size: 0.8rem; } }
+        @media (max-width: 768px) {
+            /* --- Réglages du Menu et Logo (Réparation) --- */
+            body { 
+                padding-top: 260px; /* Donne de l'espace pour le menu empilé */
+            } 
+            header { 
+                height: auto; 
+                flex-direction: column; /* Aligne la signature au-dessus du menu */
+                padding: 15px 5%; 
+                gap: 15px;
+            }
+            .logo-container img { 
+                height: 70px; /* Réduit la taille du logo sur mobile */
+            }
+            nav ul { 
+                flex-wrap: wrap; /* Permet aux liens de revenir à la ligne si besoin */
+                justify-content: center; 
+                gap: 15px; 
+            }
+            nav a {
+                font-size: 0.75rem; /* Écrit un tout petit peu plus petit sur mobile */
+                letter-spacing: 1px;
+            }
+
+            /* --- Réglages spécifiques de la Boutique (Conservés) --- */
+            .shop-grid { 
+                grid-template-columns: 1fr; 
+                gap: 30px; 
+            } 
+            .shop-intro-text h2 { 
+                font-size: 1rem; 
+            } 
+            .shop-intro-text p { 
+                font-size: 0.8rem; 
+            } 
+        }
     </style>
 </head>
 <body onload="showDefault()">
