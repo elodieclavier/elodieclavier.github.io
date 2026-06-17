@@ -83,6 +83,7 @@
             box-shadow: 0px 4px 10px rgba(0,0,0,0.03);
         }
         header.scrolled .logo-container img { height: 40px; }
+        header.scrolled .lang-switch { top: 38px; }
 
         /* Style du bouton Burger (caché sur ordinateur) */
         .burger-menu {
@@ -221,11 +222,12 @@
 
         .lang-switch {
             position: absolute;
-            top: 35px; 
+            top: 52px; 
             right: 5%; 
             display: flex;
             gap: 10px;
             align-items: center;
+            transition: top 0.4s ease;
         }
         .lang-switch a {
             text-decoration: none;
@@ -297,8 +299,9 @@
             }
 
             .lang-switch {
-                position: static; 
-                margin-top: 15px;
+                position: absolute; 
+                top: 31px !important;
+                right: 70px; /* Positionné à gauche du menu burger */
                 justify-content: center;
             }
             
@@ -407,13 +410,13 @@
                 <li><a href="boutique-shop-en.html">BOUTIQUE/SHOP</a></li>
                 <li><a href="contact-en.html">Contact</a></li>
             </ul>
-
-            <div class="lang-switch">
-                <a href="index-fr.html">FR</a>
-                <span style="color: #eeeeee; font-size: 0.75rem;">|</span>
-                <a href="#" class="active-lang">EN</a>
-            </div>
         </nav>
+
+        <div class="lang-switch">
+            <a href="index-fr.html">FR</a>
+            <span style="color: #eeeeee; font-size: 0.75rem;">|</span>
+            <a href="#" class="active-lang">EN</a>
+        </div>
     </header>
 
     <main>
@@ -923,6 +926,14 @@
         </div>
     </main>
 
+    <div id="imageLightbox" class="lightbox" onclick="closeLightbox(event)">
+        <span class="lightbox-close" onclick="forceCloseLightbox()">&times;</span>
+        <span id="lightboxPrev" class="lightbox-nav-btn" onclick="changeImage(-1, event)">&#10094;</span>
+        <img id="lightboxImg" src="" alt="Project Zoom">
+        <span id="lightboxNext" class="lightbox-nav-btn" onclick="changeImage(1, event)">&#10095;</span>
+        <div id="lightboxCaption" class="lightbox-caption" style="display:none;" onclick="event.stopPropagation()"></div>
+    </div>
+
     <footer>
         <p>Copyright © Elodie Clavier. All rights reserved.</p>
         <p style="margin-top: 15px; font-size: 0.65rem; letter-spacing: 1px;">
@@ -1050,14 +1061,6 @@
             document.body.style.overflow = 'auto';
         }
     </script>
-
-    <div id="imageLightbox" class="lightbox" onclick="closeLightbox(event)">
-        <span class="lightbox-close" onclick="forceCloseLightbox()">&times;</span>
-        <span id="lightboxPrev" class="lightbox-nav-btn" onclick="changeImage(-1, event)">&#10094;</span>
-        <img id="lightboxImg" src="" alt="Project Zoom">
-        <span id="lightboxNext" class="lightbox-nav-btn" onclick="changeImage(1, event)">&#10095;</span>
-        <div id="lightboxCaption" class="lightbox-caption" style="display:none;" onclick="event.stopPropagation()"></div>
-    </div>
 
 </body>
 </html>
