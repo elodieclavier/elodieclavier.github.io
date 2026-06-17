@@ -217,13 +217,13 @@
 
         /* --- SECTION MOBILE CORRIGÉE --- */
         @media (max-width: 768px) {
-            body { padding-top: 230px; } 
+            body { padding-top: 0px; } /* Changé de 230px à 0px car le menu n'est plus figé */
             header { 
                 flex-direction: column; 
                 height: auto; 
                 padding: 15px 10px; 
                 gap: 10px; 
-                position: fixed; 
+                position: relative; /* Changé de fixed à relative pour qu'il s'efface au scroll */
                 align-items: center; 
             }
             header.scrolled { height: auto; }
@@ -380,7 +380,6 @@
 
         <div class="portfolio-grid" id="portfolioGrid">
 
-            <!-- 1. PREMIER PROJET CORRIGÉ -->
             <div class="portfolio-item editorial">
                 <div class="image-box">
                     <img src="Illustration-Coco-Mademoiselle-Chanel-Elodie Clavier.jpg" alt="Chanel Illustrated - Lannoopublishers">
@@ -394,7 +393,6 @@
                 </div>
             </div>
 
-            <!-- 2. DEUXIÈME PROJET CORRIGÉ -->
             <div class="portfolio-item communication">
                 <div class="image-box">
                     <img src="Illustration-la-serena-lifestyle-minimaliste-elodie-clavier-1.jpg" alt="La Serena - Plage Privée">
@@ -791,207 +789,4 @@
                        onclick="openGallery([
                            'Illustration-live-drawing-Louis-Vuitton-Champs-Elysees-elodie-clavier.jpg'
                        ], `Live drawing à la boutique Louis Vuitton des Champs-Elysées,<br>à l’occasion des fêtes de Noël.`);" 
-                       class="invisible-click-overlay" 
-                       title="Cliquez pour voir le projet"></a>
-                </div>
-                <div class="portfolio-info">
-                    <h3>Louis Vuitton – Noël</h3>
-                    <span class="category">Live drawing</span>
-                </div>
-            </div>
-
-            <div class="portfolio-item communication">
-                <div class="image-box">
-                    <img src="Shopping-bag-Chanel-Illustration-encre.jpg" alt="CHANEL SHOPPING BAG">
-                </div>
-                <div class="portfolio-info">
-                    <h3>Chanel shopping bag</h3>
-                    <span class="category">Communication</span>
-                </div>
-            </div>
-
-            <div class="portfolio-item communication">
-                <div class="image-box">
-                    <img src="illustration-couvent-des-minimes-elodie-clavier.jpg" alt="Couvent des Minimes">
-                </div>
-                <div class="portfolio-info">
-                    <h3>Couvent des Minimes</h3>
-                    <span class="category">Communication</span>
-                </div>
-            </div>
-
-            <div class="portfolio-item live-drawing">
-                <div class="image-box">
-                    <img src="Louis-Vuitton-brunch-illustration-event.jpg" alt="Louis Vuitton – Brunch de noël">
-                </div>
-                <div class="portfolio-info">
-                    <h3>Louis Vuitton – Brunch</h3>
-                    <span class="category">Live drawing</span>
-                </div>
-            </div>
-
-            <div class="portfolio-item communication">
-                <div class="image-box">
-                    <img src="Illustration-le-Ritz-silhouette-encre-marry-me-at-Ritz-Elodie-Clavier.jpg" alt="Ritz Paris - Marry me">
-                    <a href="javascript:void(0)" 
-                       onclick="openGallery([
-                           'Illustration-le-Ritz-silhouette-encre-marry-me-at-Ritz-Elodie-Clavier-2.jpg',
-                           'Illustration-le-Ritz-silhouette-mariee-encre-marry-me-at-Ritz-Elodie-Clavier.jpg',
-                           'Illustration-le-Ritz-silhouettes-couple-encre-marry-me-at-Ritz-Elodie-Clavier.jpg'
-                       ], `Création de silhouettes sur le thème du mariage pour la communication du Ritz.`);" 
-                       class="invisible-click-overlay" 
-                       title="Cliquez pour voir le projet"></a>
-                </div>
-                <div class="portfolio-info">
-                    <h3>Ritz Paris - Marry me</h3>
-                    <span class="category">Communication</span>
-                </div>
-            </div>
-
-            <div class="portfolio-item live-drawing">
-                <div class="image-box">
-                    <img src="Illustration-live-drawing-Chanel-place-vendome-elodie-clavier.jpg" alt="Chanel – Noël">
-                    <a href="javascript:void(0)" 
-                       onclick="openGallery([
-                           'Illustration-live-drawing-Chanel-noel-silhouette-elodie-clavier.jpg',
-                       ], `Live drawing pour la boutique Chanel Vendôme, à l’occasion des fête de Noël.<br><br><img src='Illustration-live-drawing-Chanel-noel-place-vendome-elodie-clavier.jpg' alt='Chanel Place Vendôme' style='max-width:100%; max-height:250px; display:block; margin:15px auto 0 auto; border-radius:2px;'>`);" 
-                       class="invisible-click-overlay" 
-                       title="Cliquez pour voir le projet"></a>
-                </div>
-                <div class="portfolio-info">
-                    <h3>Chanel – Noël</h3>
-                    <span class="category">Live drawing</span>
-                </div>
-            </div>
-
-            <div class="portfolio-item communication">
-                <div class="image-box">
-                    <img src="Illustration-Girl-silhouette-encre-Elodie-Clavier.jpg" alt="BRUNETTE GIRL">
-                </div>
-                <div class="portfolio-info">
-                    <h3>Brunette girl</h3>
-                    <span class="category">Communication</span>
-                </div>
-            </div>
-
-        </div>
-    </main>
-
-    <footer>
-        <p>Copyright © Elodie Clavier. All rights reserved.</p>
-        <p style="margin-top: 15px; font-size: 0.65rem; letter-spacing: 1px;">
-            <a href="mentions-legales.html" style="color: #aaaaaa; text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='#1a1a1a'" onmouseout="this.style.color='#aaaaaa'">Mentions Légales</a>
-        </p>
-    </footer>
-
-    <script>
-        window.onscroll = function() {
-            var header = document.getElementById("myHeader");
-            if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-                header.classList.add("scrolled");
-            } else {
-                header.classList.remove("scrolled");
-            }
-        };
-
-        function filterCategory(category) {
-            var items = document.getElementsByClassName('portfolio-item');
-            
-            for (var i = 0; i < items.length; i++) {
-                var item = items[i];
-                if (category === 'all' || item.classList.contains(category)) {
-                    item.style.display = 'block';
-                } else {
-                    item.style.display = 'none';
-                }
-            }
-
-            var links = document.querySelectorAll('.filter-container a');
-            links.forEach(function(link) {
-                link.classList.remove('active');
-            });
-            
-            if (category === 'all' && document.getElementById('all-btn')) document.getElementById('all-btn').classList.add('active');
-            if (category === 'live-drawing' && document.getElementById('live-btn')) document.getElementById('live-btn').classList.add('active');
-            if (category === 'communication' && document.getElementById('communication-btn')) document.getElementById('communication-btn').classList.add('active');
-            if (category === 'editorial' && document.getElementById('editorial-btn')) document.getElementById('editorial-btn').classList.add('active');
-        }
-
-        window.addEventListener('DOMContentLoaded', function() {
-            var savedFilter = localStorage.getItem('filter');
-            if (savedFilter) {
-                filterCategory(savedFilter);
-                localStorage.removeItem('filter');
-            }
-        });
-
-        var currentGalleryImages = [];
-        var currentImageIndex = 0;
-        var currentGalleryCaption = ""; 
-
-        function openLightbox(imageSrc) {
-            currentGalleryImages = [imageSrc];
-            currentImageIndex = 0;
-            currentGalleryCaption = ""; 
-            updateLightboxView();
-        }
-
-        function openGallery(imagesArray, captionText) {
-            currentGalleryImages = imagesArray;
-            currentImageIndex = 0;
-            currentGalleryCaption = captionText || ""; 
-            updateLightboxView();
-        }
-
-        function updateLightboxView() {
-            document.getElementById('lightboxImg').src = currentGalleryImages[currentImageIndex];
-            document.getElementById('imageLightbox').style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-
-            var captionDiv = document.getElementById('lightboxCaption');
-            if (currentGalleryCaption) {
-                captionDiv.innerHTML = currentGalleryCaption.replace(/\n/g, '<br>');
-                captionDiv.style.display = 'block';
-            } else {
-                captionDiv.style.display = 'none';
-            }
-
-            if (currentGalleryImages.length > 1) {
-                document.getElementById('lightboxPrev').style.display = 'block';
-                document.getElementById('lightboxNext').style.display = 'block';
-            } else {
-                document.getElementById('lightboxPrev').style.display = 'none';
-                document.getElementById('lightboxNext').style.display = 'none';
-            }
-        }
-
-        function changeImage(direction, event) {
-            event.stopPropagation();
-            currentImageIndex += direction;
-            if (currentImageIndex >= currentGalleryImages.length) currentImageIndex = 0;
-            if (currentImageIndex < 0) currentImageIndex = currentGalleryImages.length - 1;
-            document.getElementById('lightboxImg').src = currentGalleryImages[currentImageIndex];
-        }
-
-        function closeLightbox(event) {
-            if (event.target.id === 'imageLightbox') {
-                forceCloseLightbox();
-            }
-        }
-
-        function forceCloseLightbox() {
-            document.getElementById('imageLightbox').style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-    </script>
-
-    <div id="imageLightbox" class="lightbox" onclick="closeLightbox(event)">
-        <span class="lightbox-close" onclick="forceCloseLightbox()">&times;</span>
-        <span id="lightboxPrev" class="lightbox-nav-btn" onclick="changeImage(-1, event)">&#10094;</span>
-        <img id="lightboxImg" src="" alt="Zoom projet">
-        <span id="lightboxNext" class="lightbox-nav-btn" onclick="changeImage(1, event)">&#10095;</span>
-        <div id="lightboxCaption" class="lightbox-caption" style="display:none;" onclick="event.stopPropagation()"></div>
-    </div>
-
-</body>
-</html>
+                       class="invisible-click
