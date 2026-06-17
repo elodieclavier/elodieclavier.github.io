@@ -245,19 +245,22 @@
                 padding: 0;
             }
 
-            /* Prevents the dropdown menu from overlapping main links on mobile */
+            /* MODIFICATION ICI : Le menu déroulant s'affiche désormais en superposition absolue au-dessus des créations sans rien décaler */
             .dropdown-menu {
-                position: static;
-                transform: none;
-                box-shadow: none;
-                border: none;
-                min-width: 100%;
-                padding: 5px 0 0 0;
-                background-color: transparent;
+                position: absolute;
+                top: 100%;
+                left: 50%;
+                transform: translateX(-50%);
+                box-shadow: 0px 8px 16px rgba(0,0,0,0.05);
+                border: 1px solid #eeeeee;
+                min-width: 180px;
+                padding: 10px 0;
+                background-color: #ffffff;
+                z-index: 2000;
             }
             .dropdown-menu a {
-                padding: 6px 15px;
-                color: #777777;
+                padding: 10px 15px;
+                color: #555555;
             }
             
             .portfolio-grid { grid-template-columns: 1fr; gap: 35px; }
@@ -328,7 +331,6 @@
             border-radius: 4px;
         }
         
-        /* Assure que l'image interne incluse dans la description Chanel ne dépasse pas de la modale */
         .lightbox-caption img {
             max-width: 100% !important;
             max-height: 250px !important;
@@ -904,6 +906,7 @@
             updateLightboxView();
         }
 
+        UX updated to guarantee image constraint inside description block.
         function updateLightboxView() {
             document.getElementById('lightboxImg').src = currentGalleryImages[currentImageIndex];
             document.getElementById('imageLightbox').style.display = 'flex';
