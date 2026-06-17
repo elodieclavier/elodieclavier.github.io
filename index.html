@@ -84,6 +84,30 @@
         }
         header.scrolled .logo-container img { height: 40px; }
 
+        /* Style du bouton Burger (caché sur ordinateur) */
+        .burger-menu {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 10px;
+            z-index: 1010;
+        }
+        .burger-menu span {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background-color: #1a1a1a;
+            transition: all 0.3s ease;
+        }
+
+        /* Animation du burger quand il est ouvert */
+        .burger-menu.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .burger-menu.open span:nth-child(2) { opacity: 0; }
+        .burger-menu.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
         .filter-container {
             max-width: 1200px;
             margin: 30px auto;
@@ -217,35 +241,49 @@
 
         /* --- SECTION MOBILE CORRIGÉE --- */
         @media (max-width: 768px) {
-            body { padding-top: 230px; } 
+            body { padding-top: 90px; } 
+            
             header { 
-                flex-direction: column; 
-                height: auto; 
-                padding: 15px 10px; 
-                gap: 10px; 
+                flex-direction: row; 
+                justify-content: space-between;
+                height: 80px !important; 
+                padding: 0 20px; 
+                gap: 0; 
                 position: fixed; 
                 align-items: center; 
             }
-            header.scrolled { height: auto; }
-            header.scrolled .logo-container img { height: 45px; }
-            .logo-container img { height: 55px; }
             
-            .lang-switch {
-                position: static; 
-                margin-left: 0;
-                border-left: none;
-                padding-left: 0;
-                order: -1; 
+            .logo-container img { height: 45px; }
+            
+            .burger-menu {
+                display: flex; /* On affiche le bouton burger */
+            }
+
+            /* Le menu de navigation se cache par défaut sur mobile */
+            nav { 
+                display: none; 
+                position: absolute; 
+                top: 80px; 
+                left: 0; 
+                width: 100%; 
+                background-color: #ffffff; 
+                padding: 20px 0;
+                box-shadow: 0px 10px 15px rgba(0,0,0,0.05);
+                border-bottom: 1px solid #eeeeee;
+            }
+
+            /* Quand on ajoute la classe .open en JS, le menu apparaît */
+            nav.open {
+                display: block;
             }
 
             nav ul { 
                 flex-direction: column; 
-                gap: 8px; 
+                gap: 12px; 
                 text-align: center;
                 padding: 0;
             }
 
-            /* Correction du bug de chevauchement du sous-menu sur mobile */
             .dropdown-menu {
                 position: static;
                 transform: none;
@@ -258,6 +296,12 @@
             .dropdown-menu a {
                 padding: 6px 15px;
                 color: #777777;
+            }
+
+            .lang-switch {
+                position: static; 
+                margin-top: 15px;
+                justify-content: center;
             }
             
             .portfolio-grid { grid-template-columns: 1fr; gap: 35px; }
@@ -344,14 +388,20 @@
             </a>
         </div>
         
-        <nav>
+        <button class="burger-menu" id="burgerBtn" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        
+        <nav id="navMenu">
             <ul>
                 <li>
                     <a href="index.html" class="active-link">Portfolio ▾</a>
                     <ul class="dropdown-menu">
-                        <li><a href="index.html" onclick="localStorage.setItem('filter', 'communication'); if(document.getElementById('portfolioGrid')) { filterCategory('communication'); event.preventDefault(); }">Communication</a></li>
-                        <li><a href="index.html" onclick="localStorage.setItem('filter', 'live-drawing'); if(document.getElementById('portfolioGrid')) { filterCategory('live-drawing'); event.preventDefault(); }">Live drawing</a></li>
-                        <li><a href="index.html" onclick="localStorage.setItem('filter', 'editorial'); if(document.getElementById('portfolioGrid')) { filterCategory('editorial'); event.preventDefault(); }">Editorial</a></li>
+                        <li><a href="index.html" onclick="localStorage.setItem('filter', 'communication'); if(document.getElementById('portfolioGrid')) { filterCategory('communication'); event.preventDefault(); } closeMobileMenu();">Communication</a></li>
+                        <li><a href="index.html" onclick="localStorage.setItem('filter', 'live-drawing'); if(document.getElementById('portfolioGrid')) { filterCategory('live-drawing'); event.preventDefault(); } closeMobileMenu();">Live drawing</a></li>
+                        <li><a href="index.html" onclick="localStorage.setItem('filter', 'editorial'); if(document.getElementById('portfolioGrid')) { filterCategory('editorial'); event.preventDefault(); } closeMobileMenu();">Editorial</a></li>
                     </ul>
                 </li>
                 <li><a href="about.html">ABOUT</a></li>
@@ -359,13 +409,13 @@
                 <li><a href="boutique-shop.html">BOUTIQUE/SHOP</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
-        </nav>
 
-        <div class="lang-switch">
-            <a href="#" class="active-lang">FR</a>
-            <span style="color: #eeeeee; font-size: 0.75rem;">|</span>
-            <a href="index-en.html">EN</a>
-        </div>
+            <div class="lang-switch">
+                <a href="#" class="active-lang">FR</a>
+                <span style="color: #eeeeee; font-size: 0.75rem;">|</span>
+                <a href="index-en.html">EN</a>
+            </div>
+        </nav>
     </header>
 
     <main>
@@ -380,7 +430,6 @@
 
         <div class="portfolio-grid" id="portfolioGrid">
 
-            <!-- 1. PREMIER PROJET CORRIGÉ -->
             <div class="portfolio-item editorial">
                 <div class="image-box">
                     <img src="Illustration-Coco-Mademoiselle-Chanel-Elodie Clavier.jpg" alt="Chanel Illustrated - Lannoopublishers">
@@ -394,7 +443,6 @@
                 </div>
             </div>
 
-            <!-- 2. DEUXIÈME PROJET CORRIGÉ -->
             <div class="portfolio-item communication">
                 <div class="image-box">
                     <img src="Illustration-la-serena-lifestyle-minimaliste-elodie-clavier-1.jpg" alt="La Serena - Plage Privée">
@@ -885,6 +933,24 @@
     </footer>
 
     <script>
+        // Gestion du Burger Menu mobile
+        const burgerBtn = document.getElementById('burgerBtn');
+        const navMenu = document.getElementById('navMenu');
+
+        if(burgerBtn && navMenu) {
+            burgerBtn.addEventListener('click', function() {
+                burgerBtn.classList.toggle('open');
+                navMenu.classList.toggle('open');
+            });
+        }
+
+        function closeMobileMenu() {
+            if(burgerBtn && navMenu) {
+                burgerBtn.classList.remove('open');
+                navMenu.classList.remove('open');
+            }
+        }
+
         window.onscroll = function() {
             var header = document.getElementById("myHeader");
             if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
@@ -915,6 +981,9 @@
             if (category === 'live-drawing' && document.getElementById('live-btn')) document.getElementById('live-btn').classList.add('active');
             if (category === 'communication' && document.getElementById('communication-btn')) document.getElementById('communication-btn').classList.add('active');
             if (category === 'editorial' && document.getElementById('editorial-btn')) document.getElementById('editorial-btn').classList.add('active');
+            
+            // Ferme le menu sur mobile après avoir cliqué sur un filtre global si nécessaire
+            closeMobileMenu();
         }
 
         window.addEventListener('DOMContentLoaded', function() {
