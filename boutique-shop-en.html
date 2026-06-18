@@ -167,4 +167,337 @@
     <main>
         <div class="filter-container">
             <ul>
-                <li><a onclick="filterShop('collection
+                <li><a id="btn-salam" onclick="filterShop('collection-salam', event)">Salam Collection</a></li>
+                <li><a onclick="filterShop('editions-art', event)">Fine Art Prints / Ink</a></li>
+                <li><a onclick="filterShop('editions-numeriques', event)">Digital Art Prints</a></li>
+                <li><a onclick="filterShop('illustrations-originales', event)">Originals</a></li>
+            </ul>
+        </div>
+
+        <div id="salamIntro" class="shop-intro-text">
+            <p>To purchase a fine art reproduction, orders are placed directly<br>through my publisher. Discover the full collection here:</p>
+        </div>
+
+        <div id="editionsArtIntro" class="shop-intro-text">
+            <p>Meticulously crafted ink illustrations, reproduced in very limited art editions of only 60 copies. Each fine art print is signed and numbered by my hand.</p>
+            <p class="coming-soon">✨ Collection pending – Coming soon ✨</p>
+        </div>
+
+        <div id="editionsNumeriquesIntro" class="shop-intro-text">
+            <p>Modern artwork entirely created on a digital graphics tablet.<br>Each piece is printed on premium fine art paper.</p>
+        </div>
+
+        <div id="illustrationsIntro" class="shop-intro-text">
+            <p>Here you will find my original illustrations, available in small and medium formats.<br>The collection is regularly updated with new pieces, so feel free to visit again soon...</p>
+            <p class="tax-info">Did you know? In France, purchasing an original artwork offers corporate tax deductions<br>for companies and professionals: corporate entities can deduct 20% of the artwork's purchase price from their taxable income each year for 5 years.</p>
+            <p class="coming-soon">✨ Collection pending – Coming soon ✨</p>
+        </div>
+
+        <div class="shop-grid">
+            <div class="product-card collection-salam">
+                <div class="image-box">
+                    <img src="https://www.cartes-gravures.com/cdn/shop/files/AlohaVignette.jpg?v=1768486931&width=1200" alt="Aloha">
+                </div>
+                <div class="product-info">
+                    <div class="product-details"><h3>Aloha</h3></div>
+                    <a href="https://www.cartes-gravures.com/products/aloha-delodie-clavier?variant=53147992424775" target="_blank" class="add-to-cart-btn">Buy</a>
+                </div>
+            </div>
+            
+            <div class="product-card collection-salam">
+                <div class="image-box">
+                    <img src="https://www.cartes-gravures.com/cdn/shop/files/LaBaignadeVignette.jpg?v=1768487170&width=1200" alt="La Baignade">
+                </div>
+                <div class="product-info">
+                    <div class="product-details"><h3>La Baignade</h3></div>
+                    <a href="https://www.cartes-gravures.com/products/la-baignade-delodie-clavier?variant=53148013789511" target="_blank" class="add-to-cart-btn">Buy</a>
+                </div>
+            </div>
+            
+            <div class="product-card collection-salam">
+                <div class="image-box">
+                    <img src="https://www.cartes-gravures.com/cdn/shop/files/Les_DouaniersVignette.jpg?v=1771412805&width=1200" alt="Les Douaniers">
+                </div>
+                <div class="product-info">
+                    <div class="product-details"><h3>Les Douaniers</h3></div>
+                    <a href="https://www.cartes-gravures.com/products/les-douaniers-delodie-clavier?variant=53356675137863" target="_blank" class="add-to-cart-btn">Buy</a>
+                </div>
+            </div>
+            
+            <div class="product-card collection-salam">
+                <div class="image-box">
+                    <img src="https://www.cartes-gravures.com/cdn/shop/files/SwimmingPinkVignette.jpg?v=1768487265&width=1200" alt="Swimming Pink">
+                </div>
+                <div class="product-info">
+                    <div class="product-details"><h3>Swimming Pink</h3></div>
+                    <a href="https://www.cartes-gravures.com/products/swimming-pink-delodie-clavier?variant=53148021588295" target="_blank" class="add-to-cart-btn">Buy</a>
+                </div>
+            </div>
+            
+            <div class="product-card collection-salam">
+                <div class="image-box">
+                    <img src="https://www.cartes-gravures.com/cdn/shop/files/LalectureVignette.jpg?v=1768487210&width=1200" alt="La Lecture">
+                </div>
+                <div class="product-info">
+                    <div class="product-details"><h3>La Lecture</h3></div>
+                    <a href="https://www.cartes-gravures.com/products/la-lecture-delodie-clavier?variant=53148017983815" target="_blank" class="add-to-cart-btn">Buy</a>
+                </div>
+            </div>
+
+            <div class="product-card collection-salam">
+                <div class="image-box">
+                    <img src="https://www.cartes-gravures.com/cdn/shop/files/LeLucoVignette_8c98084b-0b58-46f0-9e43-08f99c05c7a5.jpg?v=1781529371&width=1200" alt="Le Luco">
+                </div>
+                <div class="product-info">
+                    <div class="product-details"><h3>Le Luco</h3></div>
+                    <a href="https://www.cartes-gravures.com/products/le-luco-elodie-clavier?variant=54163229606215" target="_blank" class="add-to-cart-btn">Buy</a>
+                </div>
+            </div>
+
+            <div class="product-card collection-salam">
+                <div class="image-box">
+                    <img src="https://www.cartes-gravures.com/cdn/shop/files/LeCarnavaletVignette_d6e684d4-8c46-4e95-997a-a37de2f8cb7b.jpg?v=1781529369&width=1200" alt="Le Carnavalet">
+                </div>
+                <div class="product-info">
+                    <div class="product-details"><h3>Le Carnavalet</h3></div>
+                    <a href="https://www.cartes-gravures.com/products/le-carnavalet-elodie-clavier?variant=54163228950855" target="_blank" class="add-to-cart-btn">Buy</a>
+                </div>
+            </div>
+
+            <!-- PRODUIT SHOPIFY MODAL : L'Échappée -->
+            <div class="product-card editions-numeriques">
+                <div class="image-box">
+                    <img src="Illustration-affiche-lechappee-elodie-clavier.jpg" 
+                         alt="L'Échappée"
+                         data-pin-url="https://www.elodieclavier.com/boutique-shop.html"
+                         data-pin-media="https://www.elodieclavier.com/Illustration-affiche-lechappee-elodie-clavier.jpg"
+                         data-pin-description="L'Échappée – Édition Numérique d'Art limitée par Elodie Clavier Illustration">
+                    
+                    <div class="shopify-buy-button-container">
+                        <div id='product-component-10533903794523'></div>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-details"><h3>L'Échappée</h3></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Copyright © Elodie Clavier. All rights reserved.</p>
+        <p style="margin-top: 15px; font-size: 0.65rem; letter-spacing: 1px;">
+            <a href="mentions-legales-en.html" style="color: #aaaaaa; text-decoration: none; margin-right: 15px; transition: color 0.3s;" onmouseover="this.style.color='#1a1a1a'" onmouseout="this.style.color='#aaaaaa'">Legal Notice</a>
+            <span style="color: #eeeeee;">|</span>
+            <a href="cgv-en.html" style="color: #aaaaaa; text-decoration: none; margin-left: 15px; transition: color 0.3s;" onmouseover="this.style.color='#1a1a1a'" onmouseout="this.style.color='#aaaaaa'">Terms and Conditions (CGV)</a>
+        </p>
+    </footer>
+
+    <script>
+        window.onscroll = function() {
+            var header = document.getElementById("myHeader");
+            if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+                header.classList.add("scrolled");
+            } else {
+                header.classList.remove("scrolled");
+            }
+        };
+
+        function showDefault() {
+            // Sécurisation de l'affichage initial pour cibler précisément la collection Salam
+            var salamBtn = document.getElementById('btn-salam');
+            var defaultEvent = { target: salamBtn };
+            filterShop('collection-salam', defaultEvent);
+        }
+
+        function filterShop(category, event) {
+            var items = document.getElementsByClassName('product-card');
+            var filters = document.querySelectorAll('.filter-container a');
+            
+            for (var i = 0; i < items.length; i++) {
+                if (items[i].classList.contains(category)) { 
+                    items[i].style.display = 'block'; 
+                } else { 
+                    items[i].style.display = 'none'; 
+                }
+            }
+            
+            var salamText = document.getElementById('salamIntro');
+            var introText = document.getElementById('illustrationsIntro');
+            var editionsArtText = document.getElementById('editionsArtIntro');
+            var editionsNumeriquesText = document.getElementById('editionsNumeriquesIntro');
+            
+            if (category === 'collection-salam') {
+                salamText.style.display = 'block';
+                introText.style.display = 'none';
+                editionsArtText.style.display = 'none';
+                editionsNumeriquesText.style.display = 'none';
+            } else if (category === 'illustrations-originales') {
+                introText.style.display = 'block';
+                salamText.style.display = 'none';
+                editionsArtText.style.display = 'none';
+                editionsNumeriquesText.style.display = 'none';
+            } else if (category === 'editions-art') {
+                editionsArtText.style.display = 'block';
+                salamText.style.display = 'none';
+                introText.style.display = 'none';
+                editionsNumeriquesText.style.display = 'none';
+            } else if (category === 'editions-numeriques') {
+                editionsNumeriquesText.style.display = 'block';
+                salamText.style.display = 'none';
+                introText.style.display = 'none';
+                editionsArtText.style.display = 'none';
+            } else {
+                salamText.style.display = 'none';
+                introText.style.display = 'none';
+                editionsArtText.style.display = 'none';
+                editionsNumeriquesText.style.display = 'none';
+            }
+            
+            filters.forEach(function(f) { f.classList.remove('active'); });
+            if(event && event.target) {
+                event.target.classList.add('active');
+            }
+        }
+    </script>
+
+    <script async defer src="https://assets.pinterest.com/js/pinit.js" data-pin-hover="true" data-pin-shape="round"></script>
+
+<script type="text/javascript">
+/*<![CDATA[*/
+(function () {
+  var scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
+  if (window.ShopifyBuy) {
+    if (window.ShopifyBuy.UI) {
+      ShopifyBuyInit();
+    } else {
+      loadScript();
+    }
+  } else {
+    loadScript();
+  }
+  function loadScript() {
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = scriptURL;
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(script);
+    script.onload = ShopifyBuyInit;
+  }
+  function ShopifyBuyInit() {
+    var client = ShopifyBuy.buildClient({
+      domain: 'fnm4ab-4p.myshopify.com',
+      storefrontAccessToken: '9688c3e99b6523f085d92c5f918e222b',
+    });
+    ShopifyBuy.UI.onReady(client).then(function (ui) {
+      ui.createComponent('product', {
+        id: '10533903794523',
+        node: document.getElementById('product-component-10533903794523'),
+        moneyFormat: '%E2%82%AC%7B%7Bamount_with_comma_separator%7D%7D',
+        options: {
+  "product": {
+    "styles": {
+      "product": {
+        "@media (min-width: 601px)": {
+          "max-width": "100%",
+          "margin-left": "0px",
+          "margin-bottom": "20px"
+        }
+      },
+      "button": {
+        ":hover": {
+          "background-color": "#030303"
+        },
+        "background-color": "#020202",
+        ":focus": {
+          "background-color": "#030303"
+        }
+      }
+    },
+    "contents": {
+      "img": false,
+      "title": false,
+      "price": false
+    },
+    "text": {
+      "button": "Add to cart"
+    }
+  },
+  "productSet": {
+    "styles": {
+      "products": {
+        "@media (min-width: 601px)": {
+          "margin-left": "-20px"
+"
+        }
+      }
+    }
+  },
+  "modalProduct": {
+    "contents": {
+      "img": false,
+      "imgWithCarousel": true,
+      "button": false,
+      "buttonWithQuantity": true
+    },
+    "styles": {
+      "product": {
+        "@media (min-width: 601px)": {
+          "max-width": "100%",
+          "margin-left": "0px",
+          "margin-bottom": "0px"
+        }
+      },
+      "button": {
+        ":hover": {
+          "background-color": "#030303"
+        },
+        "background-color": "#020202",
+        ":focus": {
+          "background-color": "#030303"
+        }
+      }
+    },
+    "text": {
+      "button": "Add to cart"
+    }
+  },
+  "option": {},
+  "cart": {
+    "styles": {
+      "button": {
+        ":hover": {
+          "background-color": "#030303"
+        },
+        "background-color": "#020202",
+        ":focus": {
+          "background-color": "#030303"
+        }
+      }
+    },
+    "text": {
+      "total": "Subtotal",
+      "button": "Checkout"
+    }
+  },
+  "toggle": {
+    "styles": {
+      "toggle": {
+        "background-color": "#020202",
+        ":hover": {
+          "background-color": "#030303"
+        },
+        ":focus": {
+          "background-color": "#030303"
+        }
+      }
+    }
+  }
+},
+      });
+    });
+  }
+})();
+/*]]>*/
+</script>
+</body>
+</html>
