@@ -52,6 +52,14 @@
         .product-card img { width: 100%; height: auto; display: block; transition: opacity 0.4s ease; position: relative; z-index: 1; }
         .product-card:hover img { opacity: 0.85; }
         
+        /* Conteneur du bouton Shopify aimanté en bas à droite de l'image (Identique FR) */
+        .shopify-buy-button-container {
+            position: absolute !important;
+            bottom: 15px !important;
+            right: 15px !important;
+            z-index: 999 !important;
+        }
+
         .image-box span[class*="PIN_"], 
         .image-box a[class*="PIN_"] { z-index: 10000 !important; }
 
@@ -63,73 +71,22 @@
         footer { max-width: 1200px; margin: 80px auto 0 auto; text-align: center; border-top: 1px solid #eeeeee; padding-top: 40px; font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase; color: #aaaaaa; }
 
         @media (max-width: 768px) {
-            body { 
-                padding-top: 340px; 
-            } 
-            header { 
-                height: auto; 
-                flex-direction: column; 
-                padding: 15px 5%; 
-                gap: 10px;
-                position: fixed;
-                align-items: center;
-            }
+            body { padding-top: 340px; } 
+            header { height: auto; flex-direction: column; padding: 15px 5%; gap: 10px; position: fixed; align-items: center; }
             header.scrolled { height: auto; }
             header.scrolled .logo-container img { height: 45px; }
-            .logo-container img { 
-                height: 55px; 
-            }
-            nav {
-                flex-direction: column;
-                gap: 10px;
-            }
-            nav ul { 
-                flex-direction: column;
-                gap: 5px; 
-                text-align: center; 
-                padding: 0; 
-            }
-            nav li {
-                padding: 5px 0;
-            }
-            nav a {
-                font-size: 0.75rem;
-                letter-spacing: 1px;
-            }
-            .dropdown-menu {
-                position: relative;
-                top: 0;
-                left: 0;
-                transform: none;
-                box-shadow: none;
-                border: none;
-                padding: 5px 0;
-                min-width: auto;
-                background-color: #fafafa; 
-                margin-top: 5px;
-                border-radius: 4px;
-            }
-            nav li:hover .dropdown-menu {
-                display: flex;
-            }
-            .dropdown-menu a {
-                padding: 6px 15px;
-            }
-            .lang-switch {
-                margin-left: 0;
-                margin-top: 5px;
-                justify-content: center;
-            }
-            .shop-grid { 
-                grid-template-columns: 1fr; 
-                gap: 30px; 
-            } 
-            .shop-intro-text h2 { 
-                font-size: 1rem; 
-            } 
-            .shop-intro-text p { 
-                font-size: 0.8rem; 
-            } 
+            .logo-container img { height: 55px; }
+            nav { flex-direction: column; gap: 10px; }
+            nav ul { flex-direction: column; gap: 5px; text-align: center; padding: 0; }
+            nav li { padding: 5px 0; }
+            nav a { font-size: 0.75rem; letter-spacing: 1px; }
+            .dropdown-menu { position: relative; top: 0; left: 0; transform: none; box-shadow: none; border: none; padding: 5px 0; min-width: auto; background-color: #fafafa; margin-top: 5px; border-radius: 4px; }
+            nav li:hover .dropdown-menu { display: flex; }
+            .dropdown-menu a { padding: 6px 15px; }
+            .lang-switch { margin-left: 0; margin-top: 5px; justify-content: center; }
+            .shop-grid { grid-template-columns: 1fr; gap: 30px; } 
+            .shop-intro-text h2 { font-size: 1rem; } 
+            .shop-intro-text p { font-size: 0.8rem; } 
         }
     </style>
 </head>
@@ -169,7 +126,7 @@
             <ul>
                 <li><a id="btn-salam" onclick="filterShop('collection-salam', event)">Salam Collection</a></li>
                 <li><a onclick="filterShop('editions-art', event)">Fine Art Prints / Ink</a></li>
-                <li><a onclick="filterShop('editions-numeriques', event)">Digital Art Prints</a></li>
+                <li><a id="btn-numeriques" onclick="filterShop('editions-numeriques', event)">Digital Art Prints</a></li>
                 <li><a onclick="filterShop('illustrations-originales', event)">Originals</a></li>
             </ul>
         </div>
@@ -264,7 +221,7 @@
                 </div>
             </div>
 
-            <!-- PRODUIT SHOPIFY MODAL : L'Échappée -->
+            <!-- PRODUIT SHOPIFY MODAL : L'Échappée (Corrigé avec ID FR) -->
             <div class="product-card editions-numeriques">
                 <div class="image-box">
                     <img src="Illustration-affiche-lechappee-elodie-clavier.jpg" 
@@ -274,7 +231,7 @@
                          data-pin-description="L'Échappée – Édition Numérique d'Art limitée par Elodie Clavier Illustration">
                     
                     <div class="shopify-buy-button-container">
-                        <div id='product-component-10533903794523'></div>
+                        <div id='product-component-1781542579307'></div>
                     </div>
                 </div>
                 <div class="product-info">
@@ -304,10 +261,12 @@
         };
 
         function showDefault() {
-            // Sécurisation de l'affichage initial pour cibler précisément la collection Salam
-            var salamBtn = document.getElementById('btn-salam');
-            var defaultEvent = { target: salamBtn };
-            filterShop('collection-salam', defaultEvent);
+            // Uniformisation avec la version FR : cible par défaut les Éditions Numériques au chargement de la page si voulu, ou changez pour 'collection-salam'
+            var targetBtn = document.getElementById('btn-salam');
+            if(targetBtn) {
+                var defaultEvent = { target: targetBtn };
+                filterShop('collection-salam', defaultEvent);
+            }
         }
 
         function filterShop(category, event) {
@@ -391,35 +350,46 @@
     ShopifyBuy.UI.onReady(client).then(function (ui) {
       ui.createComponent('product', {
         id: '10533903794523',
-        node: document.getElementById('product-component-10533903794523'),
+        node: document.getElementById('product-component-1781542579307'),
         moneyFormat: '%E2%82%AC%7B%7Bamount_with_comma_separator%7D%7D',
         options: {
   "product": {
+    "buttonDestination": "modal",
     "styles": {
       "product": {
         "@media (min-width: 601px)": {
-          "max-width": "100%",
-          "margin-left": "0px",
-          "margin-bottom": "20px"
+          "max-width": "100% !important",
+          "margin-left": "0px !important",
+          "margin-bottom": "0px !important"
         }
       },
       "button": {
+        "font-family": "Montserrat, sans-serif",
+        "font-size": "11px",
+        "padding-top": "8px",
+        "padding-bottom": "8px",
+        "padding-left": "20px",
+        "padding-right": "20px",
+        "text-transform": "uppercase",
+        "letter-spacing": "1px",
+        "background-color": "#1a1a1a",
         ":hover": {
-          "background-color": "#030303"
+          "background-color": "#999999"
         },
-        "background-color": "#020202",
         ":focus": {
-          "background-color": "#030303"
-        }
+          "background-color": "#1a1a1a"
+        },
+        "border-radius": "0px"
       }
     },
     "contents": {
       "img": false,
       "title": false,
-      "price": false
+      "price": false,
+      "options": false
     },
     "text": {
-      "button": "Add to cart"
+      "button": "Buy"
     }
   },
   "productSet": {
@@ -427,7 +397,6 @@
       "products": {
         "@media (min-width: 601px)": {
           "margin-left": "-20px"
-"
         }
       }
     }
@@ -448,13 +417,15 @@
         }
       },
       "button": {
+        "font-family": "Montserrat, sans-serif",
+        "background-color": "#1a1a1a",
         ":hover": {
-          "background-color": "#030303"
+          "background-color": "#999999"
         },
-        "background-color": "#020202",
         ":focus": {
-          "background-color": "#030303"
-        }
+          "background-color": "#1a1a1a"
+        },
+        "border-radius": "0px"
       }
     },
     "text": {
@@ -465,13 +436,14 @@
   "cart": {
     "styles": {
       "button": {
+        "background-color": "#1a1a1a",
         ":hover": {
-          "background-color": "#030303"
+          "background-color": "#999999"
         },
-        "background-color": "#020202",
         ":focus": {
-          "background-color": "#030303"
-        }
+          "background-color": "#1a1a1a"
+        },
+        "border-radius": "0px"
       }
     },
     "text": {
@@ -482,12 +454,12 @@
   "toggle": {
     "styles": {
       "toggle": {
-        "background-color": "#020202",
+        "background-color": "#1a1a1a",
         ":hover": {
-          "background-color": "#030303"
+          "background-color": "#999999"
         },
         ":focus": {
-          "background-color": "#030303"
+          "background-color": "#1a1a1a"
         }
       }
     }
