@@ -40,8 +40,6 @@
         .shop-intro-text .coming-soon { font-size: 0.85rem; font-style: italic; color: #999999; margin-top: 20px; letter-spacing: 1px; }
 
         .shop-grid { max-width: 1250px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 45px; padding: 0 20px; }
-        
-        /* Les cartes cachées par défaut, le JS s'occupe de l'affichage */
         .product-card { background-color: #ffffff; text-decoration: none; display: none; color: inherit; }
         
         .image-box { width: 100%; position: relative; overflow: hidden; background-color: #fcfcfc; display: block; }
@@ -68,16 +66,6 @@
         
         footer { max-width: 1200px; margin: 80px auto 0 auto; text-align: center; border-top: 1px solid #eeeeee; padding-top: 40px; font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase; color: #aaaaaa; }
         
-        /* Zone technique invisible pour initialiser Shopify sans bloquer */
-        #shopify-buffer {
-            position: absolute;
-            top: -5000px;
-            left: -5000px;
-            width: 1px;
-            height: 1px;
-            overflow: hidden;
-        }
-
         @media (max-width: 768px) {
             body { padding-top: 260px; } 
             header { height: auto; flex-direction: column; padding: 15px 5%; gap: 15px; }
@@ -90,12 +78,7 @@
         }
     </style>
 </head>
-<body>
-
-    <!-- Zone tampon invisible où le bouton Shopify va TOUJOURS charger avec succès -->
-    <div id="shopify-buffer">
-        <div id='product-component-1781542579307'></div>
-    </div>
+<body onload="showDefault()">
 
     <header id="myHeader">
         <div class="logo-container">
@@ -231,8 +214,9 @@
                          data-pin-media="https://www.elodieclavier.com/Illustration-affiche-lechappee-elodie-clavier.jpg"
                          data-pin-description="L'Échappée – Édition Numérique d'Art limitée par Elodie Clavier Illustration">
                     
-                    <!-- Le réceptacle final du bouton déplacé -->
-                    <div class="shopify-buy-button-container" id="live-shopify-container"></div>
+                    <div class="shopify-buy-button-container">
+                        <div id='product-component-1781542579307'></div>
+                    </div>
                 </div>
                 <div class="product-info">
                     <div class="product-details"><h3>L'Échappée</h3></div>
@@ -241,7 +225,7 @@
         </div>
     </main>
 
-    <!-- CONFIGURATION DU BUY BUTTON AVEC POP-UP ET VARIANTES -->
+    <!-- CONFIGURATION DU BUY BUTTON AVEC POP-UP ET VARIANTES (PRODIGI SYNCHRONISÉ) -->
     <script type="text/javascript">
     /*<![CDATA[*/
     (function () {
@@ -360,12 +344,6 @@
               }
             }
           });
-          
-          // Une fois Shopify chargé à 100 %, on applique le filtre par défaut de façon sécurisée
-          var targetBtn = document.getElementById('btn-salam');
-          if (targetBtn) {
-              filterShop('collection-salam', { target: targetBtn });
-          }
         });
       }
     })();
@@ -383,20 +361,18 @@
             }
         };
 
+        function showDefault() {
+            var targetBtn = document.getElementById('btn-numeriques');
+            if (targetBtn) {
+                var mockEvent = { target: targetBtn };
+                filterShop('editions-numeriques', mockEvent);
+            }
+        }
+
         function filterShop(category, event) {
             var items = document.getElementsByClassName('product-card');
             var filters = document.querySelectorAll('.filter-container a');
             
-            // SI on clique sur Éditions Numériques, on va chercher physiquement l'élément Shopify 
-            // généré en douce en haut de page et on le place sur la fiche produit
-            if (category === 'editions-numeriques') {
-                var shopifyElement = document.getElementById('product-component-1781542579307');
-                var liveContainer = document.getElementById('live-shopify-container');
-                if (shopifyElement && liveContainer && liveContainer.children.length === 0) {
-                    liveContainer.appendChild(shopifyElement);
-                }
-            }
-
             for (var i = 0; i < items.length; i++) {
                 if (items[i].classList.contains(category)) { 
                     items[i].style.display = 'block'; 
