@@ -350,7 +350,7 @@
     /*]]>*/
     </script>
 
-    <!-- SCRIPTS INTERNES DE NAVIGATION ET DE FILTRES -->
+    <!-- SCRIPTS INTERNES DE NAVIGATION ET DE FILTRES RECONFIGURÉS -->
     <script>
         window.onscroll = function() {
             var header = document.getElementById("myHeader");
@@ -361,11 +361,12 @@
             }
         };
 
+        // AJUSTEMENT : Cible désormais le bouton de la Collection Salam au chargement
         function showDefault() {
-            var targetBtn = document.getElementById('btn-numeriques');
+            var targetBtn = document.getElementById('btn-salam');
             if (targetBtn) {
                 var mockEvent = { target: targetBtn };
-                filterShop('editions-numeriques', mockEvent);
+                filterShop('collection-salam', mockEvent);
             }
         }
 
