@@ -62,9 +62,6 @@
         
         footer { max-width: 1200px; margin: 80px auto 0 auto; text-align: center; border-top: 1px solid #eeeeee; padding-top: 40px; font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase; color: #aaaaaa; }
 
-        /* ========================================================
-           BLOC DES STYLES RESPONSIVE MOBILE REPLACÉ ET SÉCURISÉ
-           ======================================================== */
         @media (max-width: 768px) {
             body { 
                 padding-top: 340px; 
@@ -268,20 +265,23 @@
             </div>
 
             <div class="product-card editions-numeriques">
-    <div class="image-box">
-        <img src="Illustration-affiche-lechappee-elodie-clavier.jpg" 
-             alt="L'Échappée"
-             data-pin-url="https://www.elodieclavier.com/boutique-shop.html"
-             data-pin-media="https://www.elodieclavier.com/Illustration-affiche-lechappee-elodie-clavier.jpg"
-             data-pin-description="L'Échappée – Édition Numérique d'Art limitée par Elodie Clavier Illustration">
-        
-        <div class="shopify-buy-button-container">
-            <div id='product-component-XXXXXX'></div> </div>
-    </div>
-    <div class="product-info">
-        <div class="product-details"><h3>L'Échappée</h3></div>
-    </div>
-</div>
+                <div class="image-box">
+                    <img src="Illustration-affiche-lechappee-elodie-clavier.jpg" 
+                         alt="L'Échappée"
+                         data-pin-url="https://www.elodieclavier.com/boutique-shop.html"
+                         data-pin-media="https://www.elodieclavier.com/Illustration-affiche-lechappee-elodie-clavier.jpg"
+                         data-pin-description="L'Échappée – Édition Numérique d'Art limitée par Elodie Clavier Illustration">
+                    
+                    <div class="shopify-buy-button-container">
+                        <!-- ID synchronisé avec l'initialisation JS -->
+                        <div id='product-component-10533903794523'></div> 
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-details"><h3>L'Échappée</h3></div>
+                </div>
+            </div>
+        </div>
     </main>
 
     <footer>
@@ -368,7 +368,7 @@
     </script>
 
     <script async defer src="https://assets.pinterest.com/js/pinit.js" data-pin-hover="true" data-pin-shape="round"></script>
-<div id='product-component-1781790765571'></div>
+
 <script type="text/javascript">
 /*<![CDATA[*/
 (function () {
@@ -397,7 +397,7 @@
     ShopifyBuy.UI.onReady(client).then(function (ui) {
       ui.createComponent('product', {
         id: '10533903794523',
-        node: document.getElementById('product-component-1781790765571'),
+        node: document.getElementById('product-component-10533903794523'),
         moneyFormat: '%E2%82%AC%7B%7Bamount_with_comma_separator%7D%7D',
         options: {
   "product": {
