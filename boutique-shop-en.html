@@ -273,7 +273,6 @@
                          data-pin-description="L'Échappée – Édition Numérique d'Art limitée par Elodie Clavier Illustration">
                     
                     <div class="shopify-buy-button-container">
-                        <!-- ID synchronisé avec l'initialisation JS -->
                         <div id='product-component-10533903794523'></div> 
                     </div>
                 </div>
@@ -302,6 +301,9 @@
                 header.classList.remove("scrolled");
             }
         };
+
+        // Variable globale pour suivre si le bouton Shopify a déjà été initialisé
+        var shopifyInitialized = false;
 
         function showDefault() {
             var items = document.getElementsByClassName('product-card');
@@ -337,7 +339,7 @@
                 salamText.style.display = 'block';
                 introText.style.display = 'none';
                 editionsArtText.style.display = 'none';
-                editionsNumeriquesText.style.display = 'none';
+                nav_editionsNumeriquesText = editionsNumeriquesText.style.display = 'none';
             } else if (category === 'illustrations-originales') {
                 introText.style.display = 'block';
                 salamText.style.display = 'none';
@@ -353,6 +355,12 @@
                 salamText.style.display = 'none';
                 introText.style.display = 'none';
                 editionsArtText.style.display = 'none';
+                
+                // FORCE L'INITIALISATION DU BOUTON SHOPIFY SEULEMENT QUAND LA CATÉGORIE DEVIENT VISIBLE
+                if (!shopifyInitialized && typeof initShopifyBuyButton === 'function') {
+                    initShopifyBuyButton();
+                    shopifyInitialized = true;
+                }
             } else {
                 salamText.style.display = 'none';
                 introText.style.display = 'none';
@@ -371,7 +379,7 @@
 
 <script type="text/javascript">
 /*<![CDATA[*/
-(function () {
+function initShopifyBuyButton() {
   var scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
   if (window.ShopifyBuy) {
     if (window.ShopifyBuy.UI) {
@@ -404,9 +412,9 @@
     "styles": {
       "product": {
         "@media (min-width: 601px)": {
-          "max-width": "calc(25% - 20px)",
-          "margin-left": "20px",
-          "margin-bottom": "50px"
+          "max-width": "100%",
+          "margin-left": "0px",
+          "margin-bottom": "20px"
         }
       },
       "button": {
@@ -501,7 +509,7 @@
       });
     });
   }
-})();
+}
 /*]]>*/
 </script>
 </body>
