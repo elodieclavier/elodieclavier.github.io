@@ -261,13 +261,12 @@
         };
 
         function showDefault() {
-            // Uniformisation avec la version FR : cible par défaut les Éditions Numériques au chargement de la page si voulu, ou changez pour 'collection-salam'
-            var targetBtn = document.getElementById('btn-salam');
-            if(targetBtn) {
-                var defaultEvent = { target: targetBtn };
-                filterShop('collection-salam', defaultEvent);
-            }
-        }
+    var targetBtn = document.getElementById('btn-numeriques');
+    if (targetBtn) {
+        var mockEvent = { target: targetBtn };
+        filterShop('editions-numeriques', mockEvent);
+    }
+}
 
         function filterShop(category, event) {
             var items = document.getElementsByClassName('product-card');
