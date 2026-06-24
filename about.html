@@ -188,7 +188,7 @@
            ======================================================== */
         @media (max-width: 768px) {
             body { 
-                padding-top: 310px; /* Augmenté pour accueillir le menu plus grand sans masquer l'image */
+                padding-top: 310px; 
             } 
             header { 
                 flex-direction: column; 
@@ -223,13 +223,22 @@
                 border: none;
                 padding: 5px 0;
                 min-width: auto;
-                background-color: #fafafa; /* Léger fond pour le distinguer */
+                background-color: #fafafa; 
                 margin-top: 5px;
                 border-radius: 4px;
+                display: none; /* Rétracté par défaut sur mobile */
             }
 
-            /* Affiche le sous-menu de manière fluide sous "Portfolio" */
+            /* N'affiche le sous-menu sur mobile que si le parent a la classe .open */
+            nav li.open .dropdown-menu {
+                display: flex;
+            }
+
+            /* Désactive le survol (hover) sur mobile pour éviter les conflits tactiles */
             nav li:hover .dropdown-menu {
+                display: none;
+            }
+            nav li.open:hover .dropdown-menu {
                 display: flex;
             }
 
@@ -253,8 +262,8 @@
         
         <nav>
             <ul>
-                <li>
-                    <a href="index.html">Portfolio ▾</a>
+                <li class="dropdown-toggle">
+                    <a href="index.html" onclick="toggleMobileMenu(event)">Portfolio ▾</a>
                     <ul class="dropdown-menu">
                         <li><a href="index.html" onclick="localStorage.setItem('filter', '01_projects'); if(document.getElementById('portfolioGrid')) { filterCategory('01_projects'); event.preventDefault(); }">Projects</a></li>
                         <li><a href="index.html" onclick="localStorage.setItem('filter', 'live-drawing'); if(document.getElementById('portfolioGrid')) { filterCategory('live-drawing'); event.preventDefault(); }">Live drawing</a></li>
@@ -312,6 +321,20 @@
                 header.classList.remove("scrolled");
             }
         };
+
+        function toggleMobileMenu(event) {
+            // Active le comportement au clic uniquement sur les écrans mobiles
+            if (window.innerWidth <= 768) {
+                // Empêche la redirection immédiate vers index.html
+                event.preventDefault(); 
+                
+                // Récupère l'élément parent <li> et bascule la classe 'open'
+                var parentLi = event.target.closest('.dropdown-toggle');
+                if (parentLi) {
+                    parentLi.classList.toggle('open');
+                }
+            }
+        }
     </script>
 </body>
 </html>
