@@ -221,7 +221,7 @@
                 </div>
             </div>
 
-            <!-- PRODUIT SHOPIFY MODAL : L'Échappée (Corrigé avec ID FR) -->
+            <!-- PRODUIT SHOPIFY MODAL : L'Échappée -->
             <div class="product-card editions-numeriques">
                 <div class="image-box">
                     <img src="Illustration-affiche-lechappee-elodie-clavier.jpg" 
@@ -236,6 +236,24 @@
                 </div>
                 <div class="product-info">
                     <div class="product-details"><h3>L'Échappée</h3></div>
+                </div>
+            </div>
+
+            <!-- PRODUIT SHOPIFY MODAL : Coco Mademoiselle -->
+            <div class="product-card editions-numeriques">
+                <div class="image-box">
+                    <img src="Illustration-affiche-coco-mademoiselle.jpg" 
+                         alt="Coco Mademoiselle"
+                         data-pin-url="https://www.elodieclavier.com/boutique-shop.html"
+                         data-pin-media="https://www.elodieclavier.com/Illustration-affiche-coco-mademoiselle.jpg"
+                         data-pin-description="Coco Mademoiselle – Édition Numérique d'Art limitée par Elodie Clavier Illustration">
+                    
+                    <div class="shopify-buy-button-container">
+                        <div id='product-component-1783268443543'></div>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-details"><h3>Coco Mademoiselle</h3></div>
                 </div>
             </div>
         </div>
@@ -261,12 +279,12 @@
         };
 
         function showDefault() {
-    var targetBtn = document.getElementById('btn-numeriques');
-    if (targetBtn) {
-        var mockEvent = { target: targetBtn };
-        filterShop('editions-numeriques', mockEvent);
-    }
-}
+            var targetBtn = document.getElementById('btn-numeriques');
+            if (targetBtn) {
+                var mockEvent = { target: targetBtn };
+                filterShop('editions-numeriques', mockEvent);
+            }
+        }
 
         function filterShop(category, event) {
             var items = document.getElementsByClassName('product-card');
@@ -347,6 +365,8 @@
       storefrontAccessToken: '9688c3e99b6523f085d92c5f918e222b',
     });
     ShopifyBuy.UI.onReady(client).then(function (ui) {
+      
+      // 1. L'Échappée (Version EN)
       ui.createComponent('product', {
         id: '10533903794523',
         node: document.getElementById('product-component-1781542579307'),
@@ -459,6 +479,121 @@
           }
         },
       });
+
+      // 2. Coco Mademoiselle (Version EN - Harmonisé graphiquement)
+      ui.createComponent('product', {
+        id: '10572161155419',
+        node: document.getElementById('product-component-1783268443543'),
+        moneyFormat: '%E2%82%AC%7B%7Bamount_with_comma_separator%7D%7D',
+        options: {
+          "product": {
+            "buttonDestination": "modal",
+            "styles": {
+              "product": {
+                "max-width": "100% !important",
+                "margin-left": "0px !important",
+                "margin-bottom": "0px !important"
+              },
+              "button": {
+                "font-family": "Montserrat, sans-serif",
+                "font-size": "11px",
+                "padding-top": "8px",
+                "padding-bottom": "8px",
+                "padding-left": "20px",
+                "padding-right": "20px",
+                "text-transform": "uppercase",
+                "letter-spacing": "1px",
+                "background-color": "#1a1a1a",
+                ":hover": {
+                  "background-color": "#999999"
+                },
+                ":focus": {
+                  "background-color": "#1a1a1a"
+                },
+                "border-radius": "0px"
+              }
+            },
+            "contents": {
+              "img": false,
+              "title": false,
+              "price": false,
+              "options": false
+            },
+            "text": {
+              "button": "Buy"
+            }
+          },
+          "productSet": {
+            "styles": {
+              "products": {
+                "margin-left": "0px"
+              }
+            }
+          },
+          "modalProduct": {
+            "contents": {
+              "img": false,
+              "imgWithCarousel": true,
+              "button": false,
+              "buttonWithQuantity": true
+            },
+            "styles": {
+              "product": {
+                "max-width": "100%",
+                "margin-left": "0px",
+                "margin-bottom": "0px"
+              },
+              "button": {
+                "font-family": "Montserrat, sans-serif",
+                "background-color": "#1a1a1a",
+                ":hover": {
+                  "background-color": "#999999"
+                },
+                ":focus": {
+                  "background-color": "#1a1a1a"
+                },
+                "border-radius": "0px"
+              }
+            },
+            "text": {
+              "button": "Add to cart"
+            }
+          },
+          "option": {},
+          "cart": {
+            "styles": {
+              "button": {
+                "background-color": "#1a1a1a",
+                ":hover": {
+                  "background-color": "#999999"
+                },
+                ":focus": {
+                  "background-color": "#1a1a1a"
+                },
+                "border-radius": "0px"
+              }
+            },
+            "text": {
+              "total": "Subtotal",
+              "button": "Checkout"
+            }
+          },
+          "toggle": {
+            "styles": {
+              "toggle": {
+                "background-color": "#1a1a1a",
+                ":hover": {
+                  "background-color": "#999999"
+                },
+                ":focus": {
+                  "background-color": "#1a1a1a"
+                }
+              }
+            }
+          }
+        },
+      });
+
     });
   }
 })();
