@@ -113,6 +113,19 @@
             border-bottom: 1px solid #1a1a1a;
         }
 
+        /* Description spécifique pour la section Live drawing */
+        .live-drawing-description {
+            display: none;
+            max-width: 800px;
+            margin: 0 auto 40px auto;
+            text-align: center;
+            font-size: 0.85rem;
+            line-height: 1.8;
+            color: #555555;
+            font-weight: 400;
+            padding: 0 20px;
+        }
+
         .portfolio-grid {
             max-width: 1250px;
             margin: 0 auto;
@@ -245,7 +258,6 @@
                 padding: 0;
             }
 
-            /* Intégration statique identique à la version FR pour ne rien masquer */
             .dropdown-menu {
                 position: static;
                 transform: none;
@@ -385,6 +397,11 @@
                 <li><a id="communication-btn" onclick="filterCategory('communication')">Communication</a></li>
                 <li><a id="editorial-btn" onclick="filterCategory('editorial')">Editorial</a></li>
             </ul>
+        </div>
+
+        <!-- Description intégrée ici -->
+        <div id="live-drawing-desc" class="live-drawing-description">
+            Offer your guests a rare and elegant artistic experience: live ink silhouettes painted in 7 to 10 minutes. A touch of poetry captured on the spot to immortalize your finest events.
         </div>
 
         <div class="portfolio-grid" id="portfolioGrid">
@@ -870,6 +887,16 @@
                     item.style.display = 'block';
                 } else {
                     item.style.display = 'none';
+                }
+            }
+
+            // Gestion de l'affichage du texte explicatif pour "Live drawing"
+            var descBox = document.getElementById('live-drawing-desc');
+            if (descBox) {
+                if (category === 'live-drawing') {
+                    descBox.style.display = 'block';
+                } else {
+                    descBox.style.display = 'none';
                 }
             }
 
