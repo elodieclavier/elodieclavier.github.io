@@ -114,7 +114,7 @@
         }
 
         .filter-subtitle {
-            margin-top: 20px;
+            margin-top: 25px;
             font-size: 0.85rem;
             color: #666666;
             font-weight: 300;
@@ -122,6 +122,7 @@
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
+            display: none; /* Masqué par défaut */
         }
 
         .portfolio-grid {
@@ -395,7 +396,7 @@
                 <li><a id="communication-btn" onclick="filterCategory('communication')">Communication</a></li>
                 <li><a id="editorial-btn" onclick="filterCategory('editorial')">Editorial</a></li>
             </ul>
-            <p class="filter-subtitle">
+            <p id="live-drawing-subtitle" class="filter-subtitle">
                 Offrez à vos invités une expérience artistique rare et élégante : des silhouettes à l'encre peintes en direct en 7 à 10 minutes. Une touche de poésie sur le vif pour immortaliser vos plus beaux événements.
             </p>
         </div>
@@ -929,6 +930,16 @@
             if (category === 'live-drawing' && document.getElementById('live-btn')) document.getElementById('live-btn').classList.add('active');
             if (category === 'communication' && document.getElementById('communication-btn')) document.getElementById('communication-btn').classList.add('active');
             if (category === 'editorial' && document.getElementById('editorial-btn')) document.getElementById('editorial-btn').classList.add('active');
+
+            // Gestion de l'affichage du sous-titre
+            var subtitle = document.getElementById('live-drawing-subtitle');
+            if (subtitle) {
+                if (category === 'live-drawing') {
+                    subtitle.style.display = 'block';
+                } else {
+                    subtitle.style.display = 'none';
+                }
+            }
         }
 
         window.addEventListener('DOMContentLoaded', function() {
@@ -936,6 +947,8 @@
             if (savedFilter) {
                 filterCategory(savedFilter);
                 localStorage.removeItem('filter');
+            } else {
+                filterCategory('all');
             }
         });
 
